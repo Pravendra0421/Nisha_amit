@@ -5,8 +5,8 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { CarouselDemo } from "@/components/widget/Carousel";
 import CountdownTimer from "@/components/countDownTimer";
 import Events from "@/components/common/Event";
+import { TimelineDemo } from "@/components/common/Story";
 export default function Home() {
-  const { t } = useLanguage();
 
   return (
     <main className="text-center w-full h-full min-h-screen bg-gray-400 flex flex-col items-center justify-center">
@@ -14,6 +14,7 @@ export default function Home() {
       <CountdownTimer/>
       <LanguageSwitcher />
       <Events/>
+      <TimelineDemo/>
     </main>
   );
 }

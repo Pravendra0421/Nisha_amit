@@ -26,7 +26,7 @@ export function NavbarDemo() {
     },
     {
       name: t("ourStory"),
-      link: "#contact",
+      link: "/ourStory",
     },
   ];
 
