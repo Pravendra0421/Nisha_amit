@@ -4,7 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { CarouselDemo } from "@/components/widget/Carousel";
 import CountdownTimer from "@/components/countDownTimer";
-import Events from "./events/page";
+import Events from "@/components/common/Event";
 export default function Home() {
   const { t } = useLanguage();
 

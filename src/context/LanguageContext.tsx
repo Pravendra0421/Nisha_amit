@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, ReactNode, useEffect } from
 import en from "@/locales/en.json";
 import hi from "@/locales/hi.json";
 
-const translations: Record<string, any> = { en, hi };
+const translations: Record<string, Record<string, string>> = { en, hi };
 
 type LanguageContextType = {
   language: string;
