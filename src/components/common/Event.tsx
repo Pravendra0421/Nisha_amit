@@ -3,44 +3,7 @@ import React from 'react'
 import { HoverEffect } from '@/components/ui/card-hover-effect'
 import { CardStack } from '@/components/ui/card-stack';
 import { cn } from "@/lib/utils";
-export const projects = [
-  {
-    title: "Haldi 💛",
-    description:
-      "A sun-kissed ceremony of laughter and love. Join us as we shower the couple with turmeric and blessings for a life full of brightness and joy.",
-    link: "#haldi", // Unique link
-  },
-  {
-    title: "Mehndi 🌿",
-    description:
-      "An evening of intricate designs and joyful melodies. We invite you to our Mehndi night to celebrate the beautiful color of love that adorns our hands and hearts.",
-    link: "#mehndi", // Unique link
-  },
-  {
-    title: "Lagun 🙏",
-    description:
-      "The sacred commencement of our union. Witness the traditional Lagun ceremony, where we formalize the auspicious promise of a lifetime together.",
-    link: "#lagun", // Unique link
-  },
-  {
-    title: "Sangeet 💃",
-    description:
-      "Let the music take over! Get ready for an electrifying Sangeet night filled with dance, songs, and endless fun as our families unite in celebration.",
-    link: "#sangeet", // Unique link
-  },
-  {
-    title: "Phere 🔥",
-    description:
-      "Seven sacred vows around the holy fire. The Phere ceremony is the heart of our wedding, where two souls promise to walk together for a lifetime.",
-    link: "#phere", // Unique link
-  },
-  {
-    title: "Vidai 😢",
-    description:
-      "A bittersweet farewell filled with love and cherished memories. A poignant moment as our daughter begins her new journey, carrying our blessings with her.",
-    link: "#vidai", // Unique link
-  },
-];
+import { useLanguage } from '@/context/LanguageContext';
 export const Highlight = ({
   children,
   className,
@@ -60,6 +23,41 @@ export const Highlight = ({
   );
 };
  
+
+const Events = () => {
+    const {t} = useLanguage();
+const projects = [
+  {
+    title: t("haldiTitle"),
+    description:t("haldiDescription"),
+    link: "#haldi", // Unique link
+  },
+  {
+    title: t("mehndiTitle"),
+    description:t("mehandiDescription"),
+    link: "#mehndi", // Unique link
+  },
+  {
+    title: t("lagunTitle"),
+    description:t("lagunDescription"),
+    link: "#lagun", // Unique link
+  },
+  {
+    title: t("sangeetTitle"),
+    description:t("sangeetDescription"),
+    link: "#sangeet", // Unique link
+  },
+  {
+    title: t("phereTitle"),
+    description:t("phereDescription"),
+    link: "#phere", // Unique link
+  },
+  {
+    title: t("vidaiTitle"),
+    description:t("vidaiDescription"),
+    link: "#vidai", // Unique link
+  },
+];
 const CARDS = [
   {
     id: 0,
@@ -110,7 +108,6 @@ const CARDS = [
     ),
   },
 ];
-const Events = () => {
   return (
     <>
     
