@@ -28,6 +28,10 @@ export function NavbarDemo() {
       name: t("ourStory"),
       link: "/ourStory",
     },
+    {
+      name:t("gallery"),
+      link:"/gallery"
+    }
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
