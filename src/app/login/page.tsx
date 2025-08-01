@@ -84,7 +84,7 @@ const LoginForm = () => {
         <button type="submit" className="btn-signin">  {loading ? "Signing In..." : "Sign In"}</button>
         <div className="form-links">
           <a href="#">Forgot Password</a>
-          <a href="/auth/signup" className="signup">Sign up</a>
+          <a href="/signup" className="signup">Sign up</a>
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}

@@ -42,7 +42,7 @@ export function NavbarDemo() {
     setIsMobileMenuOpen(false); 
     
     // Navigate to the login page
-    router.push('/auth/login'); 
+    router.push('/login'); 
 };
   return (
     <div className="fixed top-0 left-0 w-full z-50  shadow-sm">
@@ -52,7 +52,7 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems className="font-bold text-black" items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton onClick={()=>router.push('/auth/login')} variant="secondary">{t('login')}</NavbarButton>
+            <NavbarButton onClick={()=>router.push('/login')} variant="secondary">{t('login')}</NavbarButton>
             <NavbarButton variant="primary">{t('book_a_Sangeet')}</NavbarButton>
           </div>
         </NavBody>
