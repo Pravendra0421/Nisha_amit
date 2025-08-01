@@ -10,6 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
@@ -35,7 +36,14 @@ export function NavbarDemo() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const router = useRouter();
+  const handleLoginClick = () => {
+    // Close the mobile menu (good for UX)
+    setIsMobileMenuOpen(false); 
+    
+    // Navigate to the login page
+    router.push('/auth/login'); 
+};
   return (
     <div className="fixed top-0 left-0 w-full z-50  shadow-sm">
       <Navbar>
@@ -44,7 +52,7 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems className="font-bold text-black" items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">{t('login')}</NavbarButton>
+            <NavbarButton onClick={()=>router.push('/auth/login')} variant="secondary">{t('login')}</NavbarButton>
             <NavbarButton variant="primary">{t('book_a_Sangeet')}</NavbarButton>
           </div>
         </NavBody>
@@ -75,7 +83,7 @@ export function NavbarDemo() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={handleLoginClick}
                 variant="primary"
                 className="w-full"
               >

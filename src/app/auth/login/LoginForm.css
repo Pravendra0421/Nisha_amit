@@ -1,0 +1,221 @@
+
+        :root {
+            --box-bg-color: #22222b;
+            --text-color: #ffffff;
+            --placeholder-color: #a0a0a0;
+            --glow-pink: #ff2770;
+            --glow-cyan: #45f3ff;
+            --inset-shadow: rgba(0, 0, 0, 0.5);
+            --border-highlight: rgba(255, 255, 255, 0.5);
+        }
+/* 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        } */
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            overflow: hidden;
+        }
+
+        /* --- The Main Login Container --- */
+        .login-container {
+            position: relative;
+            width: 380px;
+            height: 90px;
+            background-color: var(--box-bg-color);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: width 0.7s ease, height 0.7s ease;
+            overflow: hidden; /* This is key to creating the border effect */
+        }
+
+        /* --- The Animated Gradient Border --- */
+        /* We use a pseudo-element that is twice the size of the container,
+           has a conic-gradient background, and rotates. The container's
+           overflow:hidden clips it, revealing only the edges. */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 760px; /* Double the container width */
+            height: 760px; /* A large value to ensure coverage when form expands */
+            background: repeating-conic-gradient(
+                from var(--angle),
+                var(--glow-pink) 0%,
+                var(--glow-pink) 5%,
+                transparent 5%,
+                transparent 40%,
+                var(--glow-cyan) 50%
+            );
+            animation: rotating-border 6s linear infinite;
+        }
+
+        @property --angle {
+          syntax: '<angle>';
+          initial-value: 0deg;
+          inherits: false;
+        }
+
+        @keyframes rotating-border {
+            0% {
+                --angle: 0deg;
+            }
+            100% {
+                --angle: 360deg;
+            }
+        }
+
+        /* --- The Inner Box that creates the solid background --- */
+        .login-box {
+            position: absolute;
+            inset: 5px; /* This creates the border thickness */
+            background-color: var(--box-bg-color);
+            border-radius: 15px;
+            z-index: 2;
+        }
+
+        /* --- The Initial Header (Clickable Area) --- */
+        .login-header {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-color);
+            font-size: 1.5em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: opacity 0.5s ease;
+        }
+
+        .login-header i {
+            font-size: 1.2em;
+        }
+        
+        .login-header .fa-heart {
+            color: var(--glow-pink);
+            text-shadow: 0 0 5px var(--glow-pink), 0 0 20px var(--glow-pink);
+        }
+
+        .login-header .fa-right-to-bracket {
+             color: var(--glow-cyan);
+             text-shadow: 0 0 5px var(--glow-cyan), 0 0 20px var(--glow-cyan);
+        }
+
+        /* --- The Login Form Itself (Initially Hidden) --- */
+        .login-form {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0; /* Initially hidden */
+            transform: translateY(20px);
+            transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+            pointer-events: none; /* Not interactive when hidden */
+        }
+
+        .login-form h2 {
+            color: var(--text-color);
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+        
+        .login-form h2 .fa-heart{
+             color: var(--glow-pink);
+             text-shadow: 0 0 5px var(--glow-pink), 0 0 20px var(--glow-pink);
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            border-radius: 30px;
+            font-size: 1em;
+            color: var(--text-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input::placeholder {
+            color: var(--placeholder-color);
+        }
+        
+        .input-group input:focus {
+            border-color: var(--glow-cyan);
+        }
+
+        .btn-signin {
+            background: var(--glow-cyan);
+            border: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #111;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 30px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .btn-signin:hover {
+            box-shadow: 0 0 15px var(--glow-cyan), 0 0 30px var(--glow-cyan);
+        }
+
+        .form-links {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .form-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .form-links a.signup {
+            color: var(--glow-pink);
+            font-weight: 600;
+        }
+
+        /* --- OPEN STATE STYLES --- */
+        /* When the container has the 'open' class, these styles apply */
+        .login-container.open {
+            width: 450px;
+            height: 520px;
+            cursor: default;
+        }
+
+        .login-container.open .login-header {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .login-container.open .login-form {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
