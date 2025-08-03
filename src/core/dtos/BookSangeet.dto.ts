@@ -3,5 +3,5 @@ export interface BookSangeetDto{
     phone:string;
     Side:string;
     Song:string;
-    video:string;
+    video?:string;
 }

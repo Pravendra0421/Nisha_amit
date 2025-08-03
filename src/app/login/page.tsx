@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { auth } from '@/lib/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from 'next/navigation';
 
 import './LoginForm.css'; // <-- Import your CSS file here
 const LoginForm = () => {
@@ -14,6 +15,7 @@ const LoginForm = () => {
       const [loading, setLoading] = useState(false);
       const [error, setError] = useState("");
       const [success, setSuccess] = useState("");
+      const router = useRouter();
   useEffect(() => {
     const loginContainer = loginContainerRef.current;
     if (!loginContainer) return;
@@ -57,6 +59,8 @@ const LoginForm = () => {
             data.password
         );
         setSuccess("loginSuccessfully");
+        router.push('/book-sangeet');
+
     } catch (error) {
         
       console.error("login failed failed", error);

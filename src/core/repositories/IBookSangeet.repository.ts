@@ -18,7 +18,6 @@ export class BookSangeetRepository implements IBookSangeetRepository{
                 phone:data.phone,
                 Side:data.Side,
                 Song:data.Song,
-                video:data.video,
                 userId:userId
             }
         });
@@ -32,8 +31,7 @@ export class BookSangeetRepository implements IBookSangeetRepository{
                 name:data.name,
                 phone:data.phone,
                 Side:data.Side,
-                Song:data.Song,
-                video:data.video
+                Song:data.Song
             }
         })
         return update as unknown as BookSangeetEntity;

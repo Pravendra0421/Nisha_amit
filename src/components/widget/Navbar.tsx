@@ -44,6 +44,13 @@ export function NavbarDemo() {
     // Navigate to the login page
     router.push('/login'); 
 };
+  const handleBookSangeetClick = () => {
+    // Close the mobile menu (good for UX)
+    setIsMobileMenuOpen(false); 
+    
+    // Navigate to the login page
+    router.push('/book-sangeet'); 
+};
   return (
     <div className="fixed top-0 left-0 w-full z-50  shadow-sm">
       <Navbar>
@@ -53,7 +60,7 @@ export function NavbarDemo() {
           <NavItems className="font-bold text-black" items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton onClick={()=>router.push('/login')} variant="secondary">{t('login')}</NavbarButton>
-            <NavbarButton variant="primary">{t('book_a_Sangeet')}</NavbarButton>
+            <NavbarButton onClick={()=>router.push('/book-sangeet')} variant="primary">{t('book_a_Sangeet')}</NavbarButton>
           </div>
         </NavBody>
 
@@ -90,7 +97,7 @@ export function NavbarDemo() {
                 {t('login')}
               </NavbarButton>
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={handleBookSangeetClick}
                 variant="primary"
                 className="w-full"
               >

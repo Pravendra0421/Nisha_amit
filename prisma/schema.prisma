@@ -23,7 +23,7 @@ model BookSangeet{
   phone     String
   Side      String    //eg... broom side bride side
   Song      String
-  video     String
+  video     String?
   userId    String    @db.ObjectId
   user      User      @relation(fields:[userId],references:[id])
   createdAt DateTime  @default(now())

@@ -4,7 +4,7 @@ export interface BookSangeetEntity{
     phone:string;
     Side:string;
     Song:string;
-    vidoe:string;
+    vidoe?:string;
     userId:string;
     createdAt:Date;
     updatedAt:Date;
