@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '@/lib/firebase';
 import { bookSangeetApiRepository } from "@/services/BookSangeet.api";
+import { LoaderOne } from "@/components/ui/loader";
 const Page = () => {
     const [data, setData] = useState<BookSangeetEntity[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,9 @@ const Page = () => {
     }, []);
     const hasData = data && data.length>0;
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className="flex items-center justify-center h-screen">
+    <LoaderOne/>
+</div>;
     }
 
   return (
