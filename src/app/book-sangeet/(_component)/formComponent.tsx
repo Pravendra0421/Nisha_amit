@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { FileUpload } from '@/components/ui/file-upload';
 import { bookSangeetApiRepository } from '@/services/BookSangeet.api';
@@ -38,10 +38,38 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
         }
         setIsUploading(true);
         try {
+            // Step 1: Get the signature from your backend
+            const timestamp = Math.round(new Date().getTime() / 1000);
+            const paramsToSign = { 
+                timestamp: timestamp,
+                // If you use an upload preset, add it here for signing
+                // upload_preset: 'your_preset_name'
+            };
+
+            const signatureResponse = await axios.post('/api/upload', { paramsToSign });
+            const { signature } = signatureResponse.data;
+
+            // Step 2: Prepare form data for Cloudinary
             const formData = new FormData();
-            formData.append('audio', fileToUpload);
-            const response = await axios.post("/api/upload", formData);
-            setSong(response.data.url);
+            formData.append('file', fileToUpload);
+            // Use NEXT_PUBLIC_ variables for client-side access
+            formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY!);
+            formData.append('timestamp', timestamp.toString());
+            formData.append('signature', signature);
+            // If you use an upload preset, add it here again
+            // formData.append('upload_preset', 'your_preset_name');
+            
+            // Step 3: Upload file directly to Cloudinary
+            const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+            const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`; // Use /video for audio/video
+
+            const uploadResponse = await axios.post(uploadUrl, formData);
+
+            // Set the song URL from Cloudinary's response
+            setSong(uploadResponse.data.secure_url);
+            console.log("File uploaded successfully:", uploadResponse.data.secure_url);
+            alert("Song uploaded successfully!");
+
         } catch (error) {
             console.error("File upload failed:", error);
             alert("File upload failed.");
@@ -66,7 +94,6 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
         alert("your detail have been submitted successfull");
         console.log("data saved successfully",submitData);
         router.refresh();
-        
     }
 
   return (
