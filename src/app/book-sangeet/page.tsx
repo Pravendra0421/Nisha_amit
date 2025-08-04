@@ -3,28 +3,36 @@ import BookSangeet from "./(_component)/formComponent"
 import GetSangeet from "./(_component)/GetSangeet"
 import { BookSangeetEntity } from "@/core/entities/BookSangeetEntity";
 import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '@/lib/firebase';
 import { bookSangeetApiRepository } from "@/services/BookSangeet.api";
 const Page = () => {
     const [data, setData] = useState<BookSangeetEntity[] | null>(null);
-    useEffect(()=>{
-        const GetData =async()=>{
-            const currentUSer = await auth.currentUser;
-            if (!currentUSer) {
-            alert("please login your account before the submit");
-            return;
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                console.log("User is logged in:", user.uid);
+                const token = await user.getIdToken();
+                const response = await bookSangeetApiRepository.get(token); 
+                setData(response);
+            } else {
+                console.log("User is logged out.");
+                setData([]);
             }
-            const token = await currentUSer.getIdToken();
-            const response = await bookSangeetApiRepository.get(token);
-            console.log(response);
-            setData(response)
-        }
-        GetData();
-    },[]);
+            setIsLoading(false);
+        });
+        return () => unsubscribe();
+    }, []);
+    const hasData = data && data.length>0;
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
   return (
     <div>
         {
-            data?(<div>
+            hasData?(<div>
             <GetSangeet fetchdata={data}/>
         </div>):(<div>
             <BookSangeet/>

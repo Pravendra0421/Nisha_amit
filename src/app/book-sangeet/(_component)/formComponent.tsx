@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { FileUpload } from '@/components/ui/file-upload';
 import { bookSangeetApiRepository } from '@/services/BookSangeet.api';
 import { auth } from '@/lib/firebase';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
  export default function BookSangeet(){
@@ -15,6 +16,7 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
     const [fileToUpload, setFileToUpload] = useState<File | null>(null);
     const [Song,setSong]= useState("");
     const [isUploading, setIsUploading] = useState(false);
+    const router = useRouter()
     const handleFileUpload =(file:File)=>{
         setFileToUpload(file);
         console.log(file);
@@ -63,6 +65,8 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
         const submitData = await bookSangeetApiRepository.create(finalData,token);
         alert("your detail have been submitted successfull");
         console.log("data saved successfully",submitData);
+        router.refresh();
+        
     }
 
   return (
