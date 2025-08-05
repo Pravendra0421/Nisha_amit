@@ -10,10 +10,12 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { useState } from "react";
+import { onAuthStateChanged,signOut,User } from "firebase/auth";
+import { useState,useEffect } from "react";
 export function NavbarDemo() {
     const { t } = useLanguage();
   const navItems = [
@@ -36,6 +38,13 @@ export function NavbarDemo() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [currentUser,setCurrentUser] = useState<User |null>(null);
+  useEffect(()=>{
+    const unsubscribe = onAuthStateChanged(auth,(user)=>{
+      setCurrentUser(user);
+    });
+    return ()=>unsubscribe();
+  },[]);
   const router = useRouter();
   const handleLoginClick = () => {
     // Close the mobile menu (good for UX)
@@ -44,12 +53,25 @@ export function NavbarDemo() {
     // Navigate to the login page
     router.push('/login'); 
 };
+const handleLogout=async()=>{
+  setIsMobileMenuOpen(false);
+  try {
+    await signOut(auth);
+    router.push('/login');
+  } catch (error) {
+    console.error("Logout Error:", error);
+    alert("Failed to log out. Please try again.");
+  }
+}
   const handleBookSangeetClick = () => {
     // Close the mobile menu (good for UX)
     setIsMobileMenuOpen(false); 
     
-    // Navigate to the login page
-    router.push('/book-sangeet'); 
+    if (currentUser) {
+      router.push('/book-sangeet');
+    } else {
+      router.push('/login');
+    }
 };
   return (
     <div className="fixed top-0 left-0 w-full z-50  shadow-sm">
@@ -59,8 +81,13 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems className="font-bold text-black" items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton onClick={()=>router.push('/login')} variant="secondary">{t('login')}</NavbarButton>
-            <NavbarButton onClick={()=>router.push('/book-sangeet')} variant="primary">{t('book_a_Sangeet')}</NavbarButton>
+            <NavbarButton
+              onClick={currentUser ? handleLogout : handleLoginClick}
+              variant="secondary"
+            >
+              {currentUser ? t('logout') : t('login')}
+            </NavbarButton>
+            <NavbarButton onClick={handleBookSangeetClick} variant="primary">{t('book_a_Sangeet')}</NavbarButton>
           </div>
         </NavBody>
 
@@ -90,11 +117,11 @@ export function NavbarDemo() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
-                onClick={handleLoginClick}
+                onClick={currentUser ? handleLogout : handleLoginClick}
                 variant="primary"
                 className="w-full"
               >
-                {t('login')}
+                {currentUser ? t('logout') : t('login')}
               </NavbarButton>
               <NavbarButton
                 onClick={handleBookSangeetClick}
