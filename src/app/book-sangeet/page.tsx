@@ -24,7 +24,10 @@ const Page = () => {
             setIsLoading(false);
         });
         return () => unsubscribe();
-    }, []);
+    }, [data]);
+    const handleFormSuccess =(newData:BookSangeetEntity)=>{
+        setData(currentData=>[...(currentData || []),newData])
+    }
     const hasData = data && data.length>0;
     if (isLoading) {
         return <div className="flex items-center justify-center h-screen">
@@ -38,7 +41,7 @@ const Page = () => {
             hasData?(<div>
             <GetSangeet fetchdata={data}/>
         </div>):(<div>
-            <BookSangeet/>
+            <BookSangeet onSuccess={handleFormSuccess}/>
         </div>)
         }
     </div>

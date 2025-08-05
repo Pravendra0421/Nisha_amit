@@ -7,7 +7,11 @@ import { auth } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
- export default function BookSangeet(){
+import { BookSangeetEntity } from '@/core/entities/BookSangeetEntity';
+type BookSangeetProps = {
+    onSuccess: (newData: BookSangeetEntity) => void;
+};
+ export default function BookSangeet({onSuccess}:BookSangeetProps){
     const [detail,SetDetail] = useState({
         name:"",
         phone:"",
@@ -21,9 +25,6 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
         setFileToUpload(file);
         console.log(file);
     }
-    // const submitHandler =(event:React.FormEvent<HTMLFormElement>)=>{
-
-    // }
     const changeHandler =(e:React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
         SetDetail({
             ...detail,
@@ -93,7 +94,7 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
         const submitData = await bookSangeetApiRepository.create(finalData,token);
         alert("your detail have been submitted successfull");
         console.log("data saved successfully",submitData);
-        router.refresh();
+        onSuccess(submitData);
     }
 
   return (

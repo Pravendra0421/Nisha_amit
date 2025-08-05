@@ -1,9 +1,10 @@
+'use client'
 import { cn } from "@/lib/utils";
 import React, { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
-
+import { useEffect } from "react";
 const mainVariant = {
   initial: {
     x: 0,
@@ -16,6 +17,7 @@ const mainVariant = {
   },
 };
 
+
 const secondaryVariant = {
   initial: {
     opacity: 0,
@@ -26,16 +28,23 @@ const secondaryVariant = {
 };
 
 export const FileUpload = ({
+
   onChange,
+  multiple,
 }: {
   onChange?: (files: File[]) => void;
+  multiple?:boolean
 }) => {
+    const [mounted, setMounted] = useState(false); 
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (newFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    onChange && onChange(newFiles);
+    if (newFiles.length > 0) {
+      const filesToSet = multiple ? [...files, ...newFiles] : [newFiles[0]];
+      setFiles(filesToSet);
+      onChange && onChange(filesToSet);
+    }
   };
 
   const handleClick = () => {
@@ -43,13 +52,24 @@ export const FileUpload = ({
   };
 
   const { getRootProps, isDragActive } = useDropzone({
-    multiple: false,
+    multiple: multiple?? false,
     noClick: true,
     onDrop: handleFileChange,
     onDropRejected: (error) => {
       console.log(error);
+      alert("File type  not accepted please upload an audio file")
     },
+    accept:{
+      'audio/mpeg': ['.mp3'], 
+      'audio/wav': ['.wav'],
+      'audio/*': []          
+    }
   });
+  useEffect(() => {
+      setMounted(true);
+    }, []);
+
+    if (!mounted) return null; 
 
   return (
     <div className="w-full" {...getRootProps()}>
@@ -63,6 +83,8 @@ export const FileUpload = ({
           id="file-upload-handle"
           type="file"
           name="audio"
+          multiple={multiple ?? false}
+          accept="audio/*"
           onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
           className="hidden"
         />
