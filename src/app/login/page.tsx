@@ -80,14 +80,14 @@ const LoginForm = () => {
       <form className="login-form" onSubmit={submitHandler}>
         <h2 className=''>Login </h2>
         <div className="input-group">
-          <input type="text" onChange={changeHandler} name='email' value={data.email} placeholder="Username" required />
+          <input type="text" onChange={changeHandler} name='email' value={data.email} placeholder="enter the Email" required />
         </div>
         <div className="input-group">
           <input type="password" onChange={changeHandler} name='password' value={data.password} placeholder="Password" required />
         </div>
         <button type="submit" className="btn-signin">  {loading ? "Signing In..." : "Sign In"}</button>
         <div className="form-links">
-          <a href="#">Forgot Password</a>
+          <a href="/forgot-password">Forgot Password</a>
           <a href="/signup" className="signup">Sign up</a>
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
