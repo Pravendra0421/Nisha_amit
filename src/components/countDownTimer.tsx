@@ -52,11 +52,11 @@ interface TimeUnitProps {
 
 // This component renders each individual time unit (e.g., "Days", "Hours").
 const TimeUnit = ({ value, label }: TimeUnitProps) => (
-  <div className="flex flex-col items-center justify-center bg-white/5 p-4 rounded-2xl w-24 h-24 border border-white/10 shadow-lg">
-    <span className="text-4xl font-bold text-white tracking-tighter">
+  <div className="flex flex-col items-center justify-center bg-white/5 p-3 sm:p-4 rounded-2xl w-20 h-20 sm:w-24 sm:h-24 border border-white/10 shadow-lg">
+    <span className="text-3xl sm:text-4xl font-bold text-white tracking-tighter">
       {String(value).padStart(2, '0')}
     </span>
-    <span className="text-xs font-light text-white/60 uppercase tracking-widest mt-1">
+    <span className="text-[10px] sm:text-xs font-light text-white/60 uppercase tracking-widest mt-1">
       {label}
     </span>
   </div>
@@ -105,42 +105,39 @@ export default function CountdownTimer() {
   }, []);
 
   const timerComponents = timeLeft ? (
-    <div className="flex items-center justify-center space-x-2 sm:space-x-4 p-4">
-      <TimeUnit value={timeLeft.days} label={t("days")} />
-      <TimeUnit value={timeLeft.hours} label={t("Hours")} />
-      <TimeUnit value={timeLeft.minutes} label={t("minutes")} />
-      <TimeUnit value={timeLeft.seconds} label={t("seconds")} />
-    </div>
-  ) : (
-    <div className="text-center space-y-4 p-8">
-      <h2 className="text-4xl font-bold text-white drop-shadow-lg">
-        🎉 {t("weddingDay")}! 🎉
-      </h2>
-    </div>
-  );
+  <div className="flex flex-wrap justify-center gap-3 sm:gap-4 p-4">
+    <TimeUnit value={timeLeft.days} label={t("days")} />
+    <TimeUnit value={timeLeft.hours} label={t("Hours")} />
+    <TimeUnit value={timeLeft.minutes} label={t("minutes")} />
+    <TimeUnit value={timeLeft.seconds} label={t("seconds")} />
+  </div>
+) : (
+  <div className="text-center space-y-4 p-6 sm:p-8">
+    <h2 className="text-2xl sm:text-4xl font-bold text-white drop-shadow-lg">
+      🎉 {t("weddingDay")}! 🎉
+    </h2>
+  </div>
+);
 
   return (
    
-        <div className="absolute top-110 flex  flex-col items-center justify-center bg-black/20 backdrop-blur-sm rounded-3xl border border-white/20 shadow-2xl max-w-2xl w-full overflow-hidden">
-            
-            <div className="text-center py-6 px-6 border-b border-white/10 w-full">
-                <div className="flex items-center justify-center gap-2 text-white/90 mb-2">
-                    <HeartIcon />
-                    <h1 className="text-xl sm:text-2xl font-semibold tracking-wide">
-                        {t("home")}
-                    </h1>
-                </div>
-                <p className="text-sm text-white/70 flex items-center justify-center gap-2">
-                    <CalendarIcon />
-                    {t("Are_getting_married")}
-                </p>
-            </div>
+        <div className="absolute top-110 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm rounded-3xl border border-white/20 shadow-2xl w-[90%] sm:max-w-2xl px-4 sm:px-6 overflow-hidden">
+    <div className="text-center py-6 px-4 sm:px-6 border-b border-white/10 w-full">
+      <div className="flex items-center justify-center gap-2 text-white/90 mb-2">
+        <HeartIcon />
+        <h1 className="text-lg sm:text-2xl font-semibold tracking-wide">
+          {t("home")}
+        </h1>
+      </div>
+      <p className="text-sm text-white/70 flex items-center justify-center gap-2">
+        <CalendarIcon />
+        {t("Are_getting_married")}
+      </p>
+    </div>
 
-            {/* Countdown Component - Now automatic */}
-            <div className="py-6">
-                {/* We only render the timer on the client to avoid SSR issues */}
-                {isClient ? timerComponents : <div className="h-[128px] w-[440px]"></div>}
-            </div>
-        </div>
+    <div className="py-6">
+      {isClient ? timerComponents : <div className="h-[120px] sm:h-[128px] w-full" />}
+    </div>
+  </div>
   );
 }
