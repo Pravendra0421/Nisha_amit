@@ -24,5 +24,35 @@
   "haldiDescription":"A sun-kissed ceremony of laughter and love. Join us as we shower the couple with turmeric and blessings for a life full of brightness and joy. It's a vibrant, fun-filled event marking an auspicious start to their new journey together.",
   "mehandiDescription":"An evening of intricate designs and joyful melodies. We invite you to celebrate the beautiful tradition of Mehndi, where the deep color of henna adorns the bride's hands, symbolizing love, luck, and a happy future. Come, let's celebrate together and make this night unforgettable!",
   "lagunDescription":"The sacred commencement of our union. The Lagun ceremony is a cherished tradition where we formalize the auspicious promise of a lifetime together. It marks the moment our two families officially unite, seeking blessings for the journey ahead",
-  "sangeetDescription":"Let the music take over! Get ready for an electrifying Sangeet night filled with dance, songs, and endless fun. It's a spectacular celebration where both families come together to share their joy through lively performances. We invite you to join us on the dance floor for a night of joyful celebration. Let's make some unforgettable memories together!"
+  "sangeetDescription":"Let the music take over! Get ready for an electrifying Sangeet night filled with dance, songs, and endless fun. It's a spectacular celebration where both families come together to share their joy through lively performances. We invite you to join us on the dance floor for a night of joyful celebration. Let's make some unforgettable memories together!",
+
+  "_comment": "now start the Book sangeet Form ",
+
+  "uploadAlert":"Please select a file first.",
+  "submitUploadAlert":"Song uploaded successfully!",
+  "uploadErrorAlert":"File upload failed.",
+  "songuploadAlert":"Please upload a song first by clicking the 'Upload Song' button.",
+  "currentUserAlert":"please login your account before the submit",
+  "submitDataAlert":"your detail have been submitted successfull",
+  "inputName":"Full Name",
+  "inputNamePlaceHolder":"Enter the Full Name",
+  "inputPhone":"Phone Number",
+  "inputPhonePlaceHolder":"Enter the phone number",
+  "inputPerforming":"Performing For",
+  "selectOption1":"Select Side ....",
+  "selectOption2":"Bride Side",
+  "selectOption3":"Groom Side",
+  "localUploadButton":"Uploading...",
+  "localUploadButton2":"Upload Song Locally",
+  "songUpload":"✓ Song uploaded successfully!",
+  "submitButton":"Submit Details",
+
+
+
+
+  "_commentGetSangeet": "now start the get sangeet  ",
+  "text1":"WE ARE SO",
+  "text2":"HAPPY",
+  "text3":"TO HAVE YOU HERE",
+  "text4":"WELCOME"
 }

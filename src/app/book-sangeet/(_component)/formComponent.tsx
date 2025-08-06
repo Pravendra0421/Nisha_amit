@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
 import { BookSangeetEntity } from '@/core/entities/BookSangeetEntity';
+import { useLanguage } from '@/context/LanguageContext';
 type BookSangeetProps = {
     onSuccess: (newData: BookSangeetEntity) => void;
 };
@@ -17,6 +18,7 @@ type BookSangeetProps = {
         phone:"",
         Side:""
     });
+    const {t}=useLanguage();
     const [fileToUpload, setFileToUpload] = useState<File | null>(null);
     const [Song,setSong]= useState("");
     const [isUploading, setIsUploading] = useState(false);
@@ -34,7 +36,7 @@ type BookSangeetProps = {
     }
     const handleUploadClick = async () => {
         if (!fileToUpload) {
-            alert("Please select a file first.");
+            alert(t("uploadAlert"));
             return;
         }
         setIsUploading(true);
@@ -69,11 +71,11 @@ type BookSangeetProps = {
             // Set the song URL from Cloudinary's response
             setSong(uploadResponse.data.secure_url);
             console.log("File uploaded successfully:", uploadResponse.data.secure_url);
-            alert("Song uploaded successfully!");
+            alert(t("submitUploadAlert"));
 
         } catch (error) {
             console.error("File upload failed:", error);
-            alert("File upload failed.");
+            alert(t("uploadErrorAlert"));
         } finally {
             setIsUploading(false);
         }
@@ -81,18 +83,18 @@ type BookSangeetProps = {
     const submitHandler = async (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
         if (!Song) {
-            alert("Please upload a song first by clicking the 'Upload Song' button.");
+            alert(t("songuploadAlert"));
             return;
         }
         const currentUSer = auth.currentUser;
          if (!currentUSer) {
-            alert("please login your account before the submit");
+            alert(t("currentUserAlert"));
             return;
         }
         const token = await currentUSer.getIdToken();
         const finalData:BookSangeetDto = { ...detail, Song };
         const submitData = await bookSangeetApiRepository.create(finalData,token);
-        alert("your detail have been submitted successfull");
+        alert(t("submitDataAlert"));
         console.log("data saved successfully",submitData);
         onSuccess(submitData);
     }
@@ -103,13 +105,13 @@ type BookSangeetProps = {
             <label htmlFor='fullName'
             className='block text-left text-lg font-medium text-gray-800'
             >
-                Full Name
+                {t("inputName")}
             </label>
             <input
             type='text'
             name='name'
             id='fullName'
-            placeholder='Enter the Full Name'
+            placeholder={t("inputNamePlaceHolder")}
             required
             onChange={changeHandler}
             // value={detail.name}
@@ -118,7 +120,7 @@ type BookSangeetProps = {
             <label htmlFor='number'
             className=' mt-3 block text-left text-lg font-medium text-gray-800'
             >
-                Phone number
+               {t("inputPhone")}
             </label>
             <input
             type='text'
@@ -126,7 +128,7 @@ type BookSangeetProps = {
             id='fullName'
             required
             onChange={changeHandler}
-            placeholder='Enter the phone number'
+            placeholder={t("inputPhonePlaceHolder")}
             // value={detail.name}
             className=' mt-2 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
             />
@@ -134,14 +136,14 @@ type BookSangeetProps = {
             <label htmlFor='side'
             className=' mt-3 block text-left text-lg font-medium text-gray-800'
             >
-                Performing For
+               {t("inputPerforming")}
             </label>
             <select id='side' name='Side' value={detail.Side} required onChange={changeHandler}
             className='w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
             >
-                <option > Select Side ....</option>
-                <option value="Bride">Bride Side</option>
-                <option value="Groom">Groom Side</option>
+                <option >{t("selectOption1")}</option>
+                <option value="Bride">{t("selectOption2")}</option>
+                <option value="Groom">{t("selectOption3")}</option>
 
             </select>
 
@@ -154,9 +156,9 @@ type BookSangeetProps = {
                     disabled={!fileToUpload || isUploading || !!Song}
                     className="w-full p-2 mt-2 bg-green-600 text-white rounded-lg disabled:bg-gray-400"
                 >
-                    {isUploading ? 'Uploading...' : 'Upload Song Locally'}
+                    {isUploading ? t("localUploadButton") : t("localUploadButton2")}
                 </button>
-                {Song && <p className="text-green-600">✓ Song uploaded successfully!</p>}
+                {Song && <p className="text-green-600">{t("songUpload")}</p>}
             </div>
             <div>{Song}</div>
             <button 
@@ -164,7 +166,7 @@ type BookSangeetProps = {
                     disabled={isUploading || !Song} 
                     className='w-full p-2 mt-2 bg-green-600 text-white rounded-lg disabled:bg-gray-400'
                 >
-                    Submit Details
+                    {t("submitButton")}
                 </button>
             
         </form>
