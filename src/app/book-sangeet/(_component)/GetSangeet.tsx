@@ -3,6 +3,7 @@ import { BookSangeetEntity } from '@/core/entities/BookSangeetEntity';
 import React from 'react'
 import ColourfulText from "@/components/ui/colourful-text";
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 type YourComponentProps = {
   fetchdata: BookSangeetEntity[];
@@ -10,6 +11,7 @@ type YourComponentProps = {
 const GetSangeet = ({fetchdata}:YourComponentProps) => {
     const [playingSongUrl,setPlayingsongUrl]= useState<string | null>(null);
     const audioRef = useRef<HTMLAudioElement>(null);
+    const router = useRouter()
     const [progress, setProgress] = useState(0);
     const handleTimeUpdate = () => {
     const audio = audioRef.current;
@@ -39,6 +41,9 @@ const GetSangeet = ({fetchdata}:YourComponentProps) => {
         }
     }
 }, [playingSongUrl]); 
+const handleUpdate =(id)=>{
+    router.push(`/book-sangeet/${id}`);
+}
 
   return (
     <div className=' max-w-3xl mx-auto text-center mt-30 bg-white p-5 shadow-2xl shadow-gray-400'>
@@ -107,6 +112,7 @@ const GetSangeet = ({fetchdata}:YourComponentProps) => {
         </div>
     )}
                 </div>
+                <button className='p-1 mt-4 px-8 rounded-full bg-black text-white' onClick={()=>handleUpdate(item.id)}>Edit</button>
 
             </div>
                 </>
