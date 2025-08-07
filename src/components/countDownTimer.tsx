@@ -121,7 +121,7 @@ export default function CountdownTimer() {
 
   return (
    
-        <div className="absolute top-110 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm rounded-3xl border border-white/20 shadow-2xl w-[90%] sm:max-w-2xl px-4 sm:px-6 overflow-hidden">
+        <div className="absolute top-90 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm rounded-3xl border border-white/20 shadow-2xl w-[90%] sm:max-w-2xl px-4 sm:px-6 overflow-hidden">
     <div className="text-center py-6 px-4 sm:px-6 border-b border-white/10 w-full">
       <div className="flex items-center justify-center gap-2 text-white/90 mb-2">
         <HeartIcon />
