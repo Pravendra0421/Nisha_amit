@@ -6,6 +6,7 @@ import { CarouselDemo } from "@/components/widget/Carousel";
 import CountdownTimer from "@/components/countDownTimer";
 import Events from "@/components/common/Event";
 import { TimelineDemo } from "@/components/common/Story";
+import WeddingEvents from "@/components/common/weddingEvent";
 export default function Home() {
 
   return (
@@ -13,7 +14,8 @@ export default function Home() {
       <CarouselDemo />
       <CountdownTimer/>
       <LanguageSwitcher />
-      <Events/>
+      {/* <Events/> */}
+      <WeddingEvents/>
       <TimelineDemo/>
     </main>
   );

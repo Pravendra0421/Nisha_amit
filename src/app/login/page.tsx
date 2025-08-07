@@ -31,16 +31,13 @@ const LoginForm = () => {
         loginContainer.classList.remove('open');
       }
     };
-
     loginContainer.addEventListener('click', handleOpen);
     document.addEventListener('click', handleClose);
-
-    // Cleanup function to remove event listeners when the component unmounts
     return () => {
       loginContainer.removeEventListener('click', handleOpen);
       document.removeEventListener('click', handleClose);
     };
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
   const changeHandler=(event:React.ChangeEvent<HTMLInputElement>)=>{
     setData({
         ...data,

@@ -1,9 +1,7 @@
 'use client'
 import React from 'react'
-import { HoverEffect } from '@/components/ui/card-hover-effect'
 import { CardStack } from '@/components/ui/card-stack';
 import { cn } from "@/lib/utils";
-import { useLanguage } from '@/context/LanguageContext';
 export const Highlight = ({
   children,
   className,
@@ -25,39 +23,6 @@ export const Highlight = ({
  
 
 const Events = () => {
-    const {t} = useLanguage();
-const projects = [
-  {
-    title: t("haldiTitle"),
-    description:t("haldiDescription"),
-    link: "#haldi", // Unique link
-  },
-  {
-    title: t("mehndiTitle"),
-    description:t("mehandiDescription"),
-    link: "#mehndi", // Unique link
-  },
-  {
-    title: t("lagunTitle"),
-    description:t("lagunDescription"),
-    link: "#lagun", // Unique link
-  },
-  {
-    title: t("sangeetTitle"),
-    description:t("sangeetDescription"),
-    link: "#sangeet", // Unique link
-  },
-  {
-    title: t("phereTitle"),
-    description:t("phereDescription"),
-    link: "#phere", // Unique link
-  },
-  {
-    title: t("vidaiTitle"),
-    description:t("vidaiDescription"),
-    link: "#vidai", // Unique link
-  },
-];
 const CARDS = [
   {
     id: 0,
@@ -110,10 +75,6 @@ const CARDS = [
 ];
   return (
     <>
-    
-    <div className="max-w-7xl mx-auto px-8 mt-10">
-      <HoverEffect items={projects} />
-    </div>
         <div className="h-[20rem]  flex items-center justify-center w-full">
       <CardStack items={CARDS} />
     </div>
