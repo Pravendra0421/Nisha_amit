@@ -18,7 +18,7 @@ const haldiData = {
   time: "11:00 AM Onwards",
   venue: "Hotel Ram Raja Palace, Shivpuri",
   venueLink: "https://www.google.com/maps/place/CM6C%2B5GP+Ram+raja+vivah+ghar+shivpuri,+Shivpuri+-+Jhansi+Rd,+Airport,+Shivpuri,+Madhya+Pradesh+473638/data=!4m2!3m1!1s0x3970bb356e46d7fd:0xad1dfaf7a000c6f5?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCenQoqkAEsOTQyNjc3MjcsOTQyODQ0ODcsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklO&skid=6cb41489-de18-441d-b772-1ddddca8cf9c",
-  dressCode: "Shades of Yellow & Gold",
+  dressCode: "Shades of green & Dark green",
   gallery: [
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549080/Gemini_Generated_Image_4haed74haed74hae_cdvhxh.png",
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549080/Gemini_Generated_Image_4haed74haed74hae_cdvhxh.png",
@@ -89,9 +89,9 @@ const MehandiPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Blessings</h2>
+          <h2 className="text-3xl font-serif text-amber-800">A Night of Henna & Happiness</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-            The Haldi ceremony is a cherished pre-wedding ritual where a paste of turmeric, oil, and water is applied to the bride and groom. This tradition symbolizes purification, blesses the couple with prosperity, and wards off evil spirits, marking an auspicious beginning to their new life together.
+          Get ready for a night where the music will be loud, the colors will be bright, and the memories will last a lifetime. We cannot wait to celebrate with you, with hands full of henna and hearts full of joy. You bring the smiles, we will bring the dhol! Do not forget to come!
           </p>
         </motion.div>
 

@@ -16,7 +16,7 @@ const haldiData = {
   time: "11:00 AM Onwards",
   venue: "Hotel Ram Raja Palace, Shivpuri",
   venueLink: "https://www.google.com/maps/place/CM6C%2B5GP+Ram+raja+vivah+ghar+shivpuri,+Shivpuri+-+Jhansi+Rd,+Airport,+Shivpuri,+Madhya+Pradesh+473638/data=!4m2!3m1!1s0x3970bb356e46d7fd:0xad1dfaf7a000c6f5?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCenQoqkAEsOTQyNjc3MjcsOTQyODQ0ODcsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklO&skid=6cb41489-de18-441d-b772-1ddddca8cf9c",
-  dressCode: "Shades of Yellow & Gold",
+  dressCode: "Traditional & PartyWear ",
   gallery: [
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549542/Gemini_Generated_Image_nr9eucnr9eucnr9e_obee2t.png",
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549542/Gemini_Generated_Image_nr9eucnr9eucnr9e_obee2t.png",
@@ -87,9 +87,9 @@ const SangeetPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Blessings</h2>
+          <h2 className="text-3xl font-serif text-amber-800">Lets Nacho: The Sangeet Fiesta</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-            The Haldi ceremony is a cherished pre-wedding ritual where a paste of turmeric, oil, and water is applied to the bride and groom. This tradition symbolizes purification, blesses the couple with prosperity, and wards off evil spirits, marking an auspicious beginning to their new life together.
+          Wondering what the Sangeet night has in store? Heres a little preview: Thumping dhol beats, non-stop dancing, delicious food, and special performances by our beloved family! All you need to do is show up, we will bring the party! 🎉
           </p>
         </motion.div>
 

@@ -84,9 +84,10 @@ const VidaiPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Blessings</h2>
+          <h2 className="text-3xl font-serif text-amber-800">With Blessings into a New Life</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-            The Haldi ceremony is a cherished pre-wedding ritual where a paste of turmeric, oil, and water is applied to the bride and groom. This tradition symbolizes purification, blesses the couple with prosperity, and wards off evil spirits, marking an auspicious beginning to their new life together.
+          The Vidai is the formal farewell ceremony where the bride leaves her parental home to begin her new life with her husband. It is a deeply touching and poignant moment, filled with a mix of emotions—the sadness of saying goodbye to her childhood home and the happiness of starting a new chapter.
+            The story of the Vidai is not one of separation, but of transition. It marks the moment a daughter, who has been lovingly raised, steps into her new role as a wife, ready to build her own family. The tears shed during the Vidai are not just of sorrow, but are tears of immense love, gratitude, and heartfelt blessings for the future.
           </p>
         </motion.div>
 
@@ -97,7 +98,7 @@ const VidaiPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="mt-20"
         >
-            <h2 className="text-3xl font-serif text-amber-800 text-center mb-8">Glimpses of Joy</h2>
+            <h2 className="text-3xl font-serif text-amber-800 text-center mb-8">Love in Frames</h2>
             <div className="columns-2 md:columns-3 gap-4">
               {haldiData.gallery.map((src, index) => (
                 <div key={index} className="mb-4 break-inside-avoid">

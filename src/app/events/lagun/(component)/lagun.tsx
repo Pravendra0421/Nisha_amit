@@ -18,7 +18,7 @@ const haldiData = {
   time: "11:00 AM Onwards",
   venue: "Hotel Ram Raja Palace, Shivpuri",
   venueLink: "https://www.google.com/maps/place/CM6C%2B5GP+Ram+raja+vivah+ghar+shivpuri,+Shivpuri+-+Jhansi+Rd,+Airport,+Shivpuri,+Madhya+Pradesh+473638/data=!4m2!3m1!1s0x3970bb356e46d7fd:0xad1dfaf7a000c6f5?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCenQoqkAEsOTQyNjc3MjcsOTQyODQ0ODcsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklO&skid=6cb41489-de18-441d-b772-1ddddca8cf9c",
-  dressCode: "Shades of Yellow & Gold",
+  dressCode: "Traditional",
   gallery: [
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
@@ -89,9 +89,12 @@ const LagunPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Blessings</h2>
+          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Lagun Patrika</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-            The Haldi ceremony is a cherished pre-wedding ritual where a paste of turmeric, oil, and water is applied to the bride and groom. This tradition symbolizes purification, blesses the couple with prosperity, and wards off evil spirits, marking an auspicious beginning to their new life together.
+            
+During the ceremony, priests from both families consult astrological charts to determine the most auspicious date and time (muhurat) for the wedding. This information is then formally written down in a letter or document called the Lagun Patrika.
+
+This document, which contains all the key details of the wedding, is signed by the heads of both families. It acts as the first official wedding invitation and a sacred, unbreakable contract, solidifying the commitment in the presence of family and deities.
           </p>
         </motion.div>
 

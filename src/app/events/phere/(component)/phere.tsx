@@ -87,9 +87,11 @@ const PherePage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Blessings</h2>
+          <h2 className="text-3xl font-serif text-amber-800">Seven Steps to Forever</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-            The Haldi ceremony is a cherished pre-wedding ritual where a paste of turmeric, oil, and water is applied to the bride and groom. This tradition symbolizes purification, blesses the couple with prosperity, and wards off evil spirits, marking an auspicious beginning to their new life together.
+           The story of the Phere is a beautiful journey of commitment. After the initial ceremonies, the brides and grooms garments are tied together in a knot, a ritual called the Gathbandhan. This knot symbolizes their eternal bond and their union as one soul in two bodies.
+Together, they circle a small, sacred fire, known as Agni. The fire is not just an element; it is considered a deity, a divine witness to the vows being made. The couple offers puffed rice and ghee to the fire, seeking blessings from the gods for a long and prosperous life together.
+The most crucial part is the Saptapadi, where the couple takes seven steps together, each step representing a specific vow and a pillar of their future marriage. With each step, they build the foundation for their shared life. Once the seventh step is taken, the marriage is considered complete, sacred, and irrevocable.
           </p>
         </motion.div>
 
