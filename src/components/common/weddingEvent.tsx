@@ -43,8 +43,6 @@ const eventsData = [
   },
 ];
 
-// --- Animation Variants for the Cards ---
-// This object defines how cards animate based on their 'direction'
 const cardVariants = {
   hidden: (direction: string) => ({
     opacity: 0,
@@ -55,15 +53,14 @@ const cardVariants = {
     opacity: 1,
     x: 0,
     y: 0,
-    // The transition object is REMOVED from here
   },
 };
 
-
 const WeddingEvents = () => {
   return (
-      <div className='p-2'>
-        <div className="max-w-7xl mx-auto">
+    // The fix is applied here
+    <div className='p-2 overflow-x-hidden'> 
+      <div className="max-w-7xl mx-auto">
         <motion.h2 
           className="text-4xl md:text-5xl font-serif font-bold text-center text-white mb-12"
           initial={{ opacity: 0, y: -50 }}
@@ -75,15 +72,14 @@ const WeddingEvents = () => {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {eventsData.map((event) => (
-            // Each card is a motion component
             <motion.div
               key={event.title}
               className="relative rounded-xl overflow-hidden shadow-lg group"
               variants={cardVariants}
-              custom={event.animationDirection} // Passes the direction to the variant
+              custom={event.animationDirection}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }} // Animation triggers when 30% of card is visible
+              viewport={{ once: true, amount: 0.3 }}
             >
               <Image
                 src={event.imageUrl}
@@ -92,23 +88,20 @@ const WeddingEvents = () => {
                 height={500}
                 className="w-full h-96 object-cover transform transition-transform duration-500 ease-in-out group-hover:scale-110"
               />
-              {/* Dark overlay for text readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-              
-              {/* Positioned Title at the bottom */}
-              <div className="absolute  inset-0 gap-14 flex items-end p-6">
-                <div className="font-serif text-3xl  font-bold text-amber-300 transform transition-transform duration-500 group-hover:-translate-y-2">
+              <div className="absolute inset-0 gap-14 flex items-end p-6">
+                <div className="font-serif text-3xl font-bold text-amber-300 transform transition-transform duration-500 group-hover:-translate-y-2">
                   {event.title}
                 </div>
-                <div className='font-serif text-3xl  font-bold text-amber-300 transform transition-transform duration-500 group-hover:-translate-y-2'>
-                    {event.date}
+                <div className='font-serif text-3xl font-bold text-amber-300 transform transition-transform duration-500 group-hover:-translate-y-2'>
+                  {event.date}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 

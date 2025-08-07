@@ -4,7 +4,7 @@ import WeddingEvents from '@/components/common/weddingEvent'
 const page = () => {
   return (
     <>
-    <div className='mt-25'>
+    <div className='mt-28'>
       <Events/>
     <WeddingEvents/>
     </div>
