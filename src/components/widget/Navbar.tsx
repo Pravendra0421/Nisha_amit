@@ -79,7 +79,7 @@ const handleLogout=async()=>{
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          <NavItems className="font-bold text-black" items={navItems} />
+          <NavItems className="font-bold text-black mr-3" items={navItems} />
           <div className="flex items-center gap-4">
             <NavbarButton
               onClick={currentUser ? handleLogout : handleLoginClick}
