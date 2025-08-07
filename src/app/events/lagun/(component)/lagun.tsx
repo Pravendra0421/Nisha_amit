@@ -1,7 +1,4 @@
-// src/app/haldi/page.tsx
-
 'use client';
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -11,23 +8,29 @@ const CalendarIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill=
 const MapPinIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 const ShirtIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>;
 
-// --- MOCK DATA (Replace with your actual data) ---
 const haldiData = {
-  heroImage: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-  date: "Friday, 19th February 2026",
+  heroImage: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+  date: "Friday, 21st February 2026",
   time: "11:00 AM Onwards",
   venue: "Hotel Ram Raja Palace, Shivpuri",
   venueLink: "https://www.google.com/maps/place/CM6C%2B5GP+Ram+raja+vivah+ghar+shivpuri,+Shivpuri+-+Jhansi+Rd,+Airport,+Shivpuri,+Madhya+Pradesh+473638/data=!4m2!3m1!1s0x3970bb356e46d7fd:0xad1dfaf7a000c6f5?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCenQoqkAEsOTQyNjc3MjcsOTQyODQ0ODcsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklO&skid=6cb41489-de18-441d-b772-1ddddca8cf9c",
   dressCode: "Traditional",
   gallery: [
-    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
+    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
   ],
 };
+    const liveLoaction="https://www.google.com/maps/@22.7378602,75.8882503,15z/data=!3m1!4b1!4m2!7m1!2e1?hl=en&entry=ttu&g_ep=EgoyMDI1MDgwNC4wIKXMDSoASAFQAw%3D%3D";
+    if(liveLoaction === "https://www.google.com/maps/@22.7378602,75.8882503,15z/data=!3m1!4b1!4m2!7m1!2e1?hl=en&entry=ttu&g_ep=EgoyMDI1MDgwNC4wIKXMDSoASAFQAw%3D%3D"){
+        <div className="text-center p-4 bg-gray-100 rounded-lg">
+            <p className="font-bold">Live tracking will begin soon!</p>
+            <p className="text-sm text-gray-600">Please check back when the Barat starts.</p>
+        </div>
+    }
 
 const LagunPage = () => {
   const sectionVariants = {
@@ -36,7 +39,7 @@ const LagunPage = () => {
 };
 
   return (
-    <div className="bg-[#FFF8E1]"> {/* A light creamy yellow background */}
+    <div className="bg-[#FFF8E1]"> 
       
       {/* --- 1. Hero Section --- */}
       <section className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center text-center text-white">
@@ -47,14 +50,13 @@ const LagunPage = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">The Lagun Ceremony</h1>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">The BARAT</h1>
           <p className="mt-4 text-lg md:text-xl font-light">{haldiData.date}</p>
         </motion.div>
       </section>
 
       <main className="max-w-5xl mx-auto px-4 py-16 sm:py-24">
         
-        {/* --- 2. Event Details Card --- */}
         <motion.div
           variants={sectionVariants}
           initial="hidden"
@@ -70,16 +72,35 @@ const LagunPage = () => {
             <Link href={haldiData.venueLink} target='_blank'>
           <div className="flex flex-col items-center gap-2 text-gray-700">
             <MapPinIcon />
-            <h3 className="font-bold text-lg">Where</h3>
+            <h3 className="font-bold text-lg">Starting Point Address</h3>
             <p rel="noopener noreferrer" className="text-sm hover:text-amber-600 transition-colors">{haldiData.venue}</p>
           </div>
             </Link>
+            
+            <Link href={haldiData.venueLink} target='_blank'>
           <div className="flex flex-col items-center gap-2 text-gray-700">
-            <ShirtIcon />
-            <h3 className="font-bold text-lg">Dress Code</h3>
-            <p className="text-sm">{haldiData.dressCode}</p>
+            <MapPinIcon />
+            <h3 className="font-bold text-lg">Where</h3>
+            <p className="text-sm">{haldiData.venue}</p>
           </div>
+          </Link>
         </motion.div>
+        
+    <motion.div>
+        <div className="my-12 text-center">
+      <h3 className="text-2xl font-serif font-bold text-gray-800 mb-4">
+        The Barat is on its way!
+      </h3>
+      <a
+        href={liveLoaction}
+        target="_blank" // Opens the map in a new tab
+        rel="noopener noreferrer"
+        className="inline-block px-8 py-4 bg-green-600 text-white font-bold text-lg rounded-full shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
+      >
+        Track the Barat Live! 🐎
+      </a>
+    </div>
+    </motion.div>
 
         {/* --- 3. The Story of Haldi --- */}
         <motion.div 
@@ -89,12 +110,9 @@ const LagunPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">A Ceremony of Lagun Patrika</h2>
+          <h2 className="text-3xl font-serif text-amber-800">A Majestic Welcome</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-            
-During the ceremony, priests from both families consult astrological charts to determine the most auspicious date and time (muhurat) for the wedding. This information is then formally written down in a letter or document called the Lagun Patrika.
-
-This document, which contains all the key details of the wedding, is signed by the heads of both families. It acts as the first official wedding invitation and a sacred, unbreakable contract, solidifying the commitment in the presence of family and deities.
+          Bring the noise and bring the joy! Get ready to dance your heart out and join the grooms spectacular procession. Be there to make the celebration unforgettable. Do not miss it!
           </p>
         </motion.div>
 
@@ -117,13 +135,13 @@ This document, which contains all the key details of the wedding, is signed by t
         </motion.div>
     
         <motion.div
-  variants={sectionVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.3 }}
-  transition={{ duration: 0.7, ease: 'easeOut' }}
-  className="mt-20"
->
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+        className="mt-20"
+        >
   <h2 className="text-3xl font-serif text-amber-800 text-center mb-8">
     How to Get There
   </h2>
@@ -140,6 +158,7 @@ This document, which contains all the key details of the wedding, is signed by t
     ></iframe>
   </div>
 </motion.div>
+
       </main>
     </div>
   );

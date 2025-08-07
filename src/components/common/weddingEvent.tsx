@@ -23,26 +23,26 @@ const eventsData = [
   },
   {
     id:3,
-    title: "Lagun 🙏",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549425/Gemini_Generated_Image_5fly9e5fly9e5fly_gy8yp2.png",
-    animationDirection: "right",
-    date:"19 feb",
-    url:"/events/lagun"
-  },
-  {
-    id:4,
     title: "Sangeet 💃",
     imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549542/Gemini_Generated_Image_nr9eucnr9eucnr9e_obee2t.png",
     animationDirection: "left",
-    date:"19 feb",
+    date:"20 feb",
     url:"/events/sangeet"
+  },
+  {
+    id:4,
+    title: "Baraat 🐎",
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    animationDirection: "right",
+    date:"21 feb",
+    url:"/events/lagun"
   },
   {
     id:5,
     title: "Phere 🔥",
     imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
     animationDirection: "bottom",
-    date:"19 feb",
+    date:"21 feb",
     url:"/events/phere"
   },
   {
@@ -50,7 +50,7 @@ const eventsData = [
     title: "Vidai 😢",
     imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
     animationDirection: "right",
-    date:"19 feb",
+    date:"22 feb",
     url:"/events/vidai"
   },
 ];
