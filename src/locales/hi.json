@@ -57,6 +57,42 @@
   "text1": "हम बहुत",
   "text2": "खुश हैं",
   "text3": "कि आप यहाँ हैं",
-  "text4": "स्वागत है"
+  "text4": "स्वागत है",
+
+
+  "submitSuccess": "सफलतापूर्वक लॉगिन हुआ",
+  "errorcredential": "गलत ईमेल या पासवर्ड। कृपया दोबारा कोशिश करें।",
+  "errorEmail": "कृपया एक मान्य ईमेल पता दर्ज करें।",
+  "errorUser": "यह खाता बंद कर दिया गया है।",
+  "errorToomany": "बहुत बार गलत कोशिश की गई है। कृपया कुछ देर बाद प्रयास करें।",
+  "errorDefault": "कुछ गलत हो गया है। कृपया फिर से कोशिश करें।",
+  "welcomeLogin": "स्वागत है, लॉगिन करें",
+  "log": "लॉगिन",
+  "placeHolder1": "ईमेल दर्ज करें",
+  "placeHolder2": "पासवर्ड",
+  "buttonLogin": "साइन इन हो रहा है...",
+  "buttonLogin2": "साइन इन करें",
+  "forgotPassword": "पासवर्ड भूल गए?",
+  "SignupLogin": "साइन अप करें",
+
+
+
+
+
+
+  "submitSignup": "साइनअप सफल हुआ",
+  "signupFailed": "साइनअप विफल हुआ",
+  "welcomeSignup": "जैन परिवार में आपका स्वागत है",
+  "nameSignUp": "नाम",
+  "placeh1": "अपना पूरा नाम दर्ज करें",
+  "placeh2": "अपना फोन नंबर दर्ज करें",
+  "emailSignup": "ईमेल",
+  "phoneSignup": "फोन",
+  "passwordSignup": "पासवर्ड",
+  "buttonSignup": "साइनअप हो रहा है...",
+  "buttonSignup2": "साइनअप करें",
+  "movetoLogin": "लॉगिन पर जाएं"
+
+
 
 }

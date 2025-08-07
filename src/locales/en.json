@@ -54,5 +54,24 @@
   "text1":"WE ARE SO",
   "text2":"HAPPY",
   "text3":"TO HAVE YOU HERE",
-  "text4":"WELCOME"
+  "text4":"WELCOME",
+
+
+
+
+   "_commentLogin": "now start the get sangeet  ",
+   "submitSuccess":"loginSuccessfully",
+   "errorcredential":"Invalid email or password. Please try again.",
+   "errorEmail":"Please enter a valid email address.",
+   "errorUser":"This account has been disabled.",
+   "errorToomany":"Too many failed login attempts. Please try again later.",
+   "errorDefault":"An unknown error occurred. Please try again.",
+   "welcomeLogin":"Welcome LOGIN",
+   "log":"Login",
+   "placeHolder1":"enter the Email",
+   "placeHolder2":"password",
+   "buttonLogin":"Signing In...",
+   "buttonLogin2":"Sign In",
+   "forgotPassword":"Forgot Password",
+   "SignupLogin":"Sign up"
 }

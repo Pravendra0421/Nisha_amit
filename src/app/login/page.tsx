@@ -3,15 +3,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { auth } from '@/lib/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from 'next/navigation';
-
-import './LoginForm.css'; // <-- Import your CSS file here
+import { useLanguage } from '@/context/LanguageContext';
+import './LoginForm.css'; 
 const LoginForm = () => {
   const loginContainerRef = useRef<HTMLDivElement>(null);
   const [data,setData] = useState({
     email:"",
     password:""
   });
-  
+      const {t} = useLanguage();
       const [loading, setLoading] = useState(false);
       const [error, setError] = useState("");
       const [success, setSuccess] = useState("");
@@ -58,14 +58,33 @@ const LoginForm = () => {
             data.email,
             data.password
         );
-        setSuccess("loginSuccessfully");
+        setSuccess(t("submitSuccess"));
         router.push('/book-sangeet');
 
-    } catch (error) {
-        
-      console.error("login failed failed", error);
-      setError("login failed");
-    }finally{
+    }catch (error: unknown) {
+  if (typeof error === "object" && error !== null && "code" in error) {
+    const firebaseError = error as { code: string };
+    switch (firebaseError.code) {
+      case 'auth/invalid-credential':
+        setError(t("errorcredential"));
+        break;
+      case 'auth/invalid-email':
+        setError(t("errorEmail"));
+        break;
+      case 'auth/user-disabled':
+        setError(t("errorUser"));
+        break;
+      case 'auth/too-many-requests':
+        setError(t("errorToomany"));
+        break;
+      default:
+        setError(t("errorDefault"));
+        break;
+    }
+  } else {
+    setError(t("errorDefault"));
+  }
+} finally{
         setLoading(false);
     }
   }
@@ -74,21 +93,21 @@ const LoginForm = () => {
       <div className="login-box"></div>
       <div className="login-header">
         <i className="fa-solid fa-right-to-bracket"></i>
-        <span className='text-pink-800'>Welcome LOGIN</span>
+        <span className='text-pink-800'>{t("welcomeLogin")}</span>
         <i className="fa-solid fa-heart"></i>
       </div>
       <form className="login-form" onSubmit={submitHandler}>
-        <h2 className=''>Login </h2>
+        <h2 className=''>{t("log")}</h2>
         <div className="input-group">
-          <input type="text" onChange={changeHandler} name='email' value={data.email} placeholder="enter the Email" required />
+          <input type="text" onChange={changeHandler} name='email' value={data.email} placeholder={t("placeHolder1")} required />
         </div>
         <div className="input-group">
-          <input type="password" onChange={changeHandler} name='password' value={data.password} placeholder="Password" required />
+          <input type="password" onChange={changeHandler} name='password' value={data.password} placeholder={t("placeHolder2")} required />
         </div>
-        <button type="submit" className="btn-signin">  {loading ? "Signing In..." : "Sign In"}</button>
+        <button type="submit" className="btn-signin">  {loading ? t("buttonLogin") : t("buttonLogin2")}</button>
         <div className="form-links">
-          <a href="/forgot-password">Forgot Password</a>
-          <a href="/signup" className="signup">Sign up</a>
+          <a href="/forgot-password">{t("forgotPassword")}</a>
+          <a href="/signup" className="signup">{t("SignupLogin")}</a>
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
       {success && <p style={{ color: "green" }}>{success}</p>}
