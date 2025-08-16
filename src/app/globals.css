@@ -132,3 +132,15 @@
     @apply bg-background text-foreground;
   }
 }
+@keyframes scrollRightToLeft {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-80%);
+  }
+}
+
+.scrollText {
+  animation: scrollRightToLeft 30s linear infinite;
+}

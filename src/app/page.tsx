@@ -1,15 +1,16 @@
 "use client";
-
-import { useLanguage } from "@/context/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { CarouselDemo } from "@/components/widget/Carousel";
 import CountdownTimer from "@/components/countDownTimer";
-import Events from "@/components/common/Event";
 import { TimelineDemo } from "@/components/common/Story";
 import WeddingEvents from "@/components/common/weddingEvent";
+import GroomMember from "@/components/widget/FamilyMember/Groom";
+import BrideMember from "@/components/widget/FamilyMember/Bride";
+import Footer from "@/components/widget/Footer";
 export default function Home() {
 
   return (
+    <>
     <main className="text-center w-full h-full min-h-screen bg-gray-400 flex flex-col items-center justify-center">
       <CarouselDemo />
       <CountdownTimer/>
@@ -17,6 +18,12 @@ export default function Home() {
       {/* <Events/> */}
       <WeddingEvents/>
       <TimelineDemo/>
+      <GroomMember/>
     </main>
+    <div className="text-center mt-10 w-full h-full min-h-screen bg-white flex flex-col items-center justify-center">
+      <BrideMember/>
+      <Footer/>
+    </div>
+    </>
   );
 }

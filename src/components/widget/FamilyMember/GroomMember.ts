@@ -1,0 +1,46 @@
+export interface FamilyMemberData{
+    id:number,
+    imageUrl:string;
+    name:string;
+    relation:string;
+}
+ const GroomMemberItem:FamilyMemberData[]=[
+    {
+        id:1,
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+        name:"Name",
+        relation:"Relation"
+    },
+    {
+        id:2,
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+        name:"Name",
+        relation:"Relation"
+    },
+    {
+        id:3,
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+        name:"Name",
+        relation:"Relation"
+    },
+    {
+        id:4,
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+        name:"Name",
+        relation:"Relation"
+    },
+    
+    {
+        id:5,
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+        name:"Name",
+        relation:"Relation"
+    },
+    {
+        id:6,
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+        name:"Name",
+        relation:"Relation"
+    }
+]
+export default GroomMemberItem;
