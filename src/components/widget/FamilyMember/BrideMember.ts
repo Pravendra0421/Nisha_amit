@@ -38,7 +38,7 @@ export const BrideMemberItem:FamilyMemberData[]=[
     },
     {
         id:6,
-        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/v1755437453/bhabhi_rgdgft.jpg",
+        imageUrl:"https://res.cloudinary.com/ddguf7pkw/image/upload/c_fill,w_350,h_350/v1755437453/bhabhi_rgdgft.jpg",
         name:"Julie Jain",
         relation:"Please meet my Bhabhi"
     }
