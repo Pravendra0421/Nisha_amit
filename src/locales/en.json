@@ -89,5 +89,65 @@
    "passwordSignup":"Password",
    "buttonSignup":"Signing up...",
    "buttonSignup2":"Signup",
-   "movetoLogin":"move to  Login"
+   "movetoLogin":"move to  Login",
+
+   "eventName1":"Amit Love Nisha",
+   "eventDesign1":"The Proposal 💍",
+   "eventName2":"Sangeet Night",
+   "eventDesign2":"A Symphony of Joy 💃",
+   "eventName3":"The Wedding Vows",
+   "eventDesign3":"A Promise of Forever 🙏",
+   "eventName4":"Grand Reception",
+   "eventDesign4":"Our First Celebration as Mr. & Mrs. 🎉",
+
+   "eventTitle1":"Haldi 💛",
+   "eventTitle2":"Mehendi 🌿",
+   "eventTitle3":"Sangeet 💃",
+   "eventTitle4":"Baraat 🐎",
+   "eventTitle5":"Phere 🔥",
+   "eventTitle6":"Vidai 😢",
+
+   "eventDate":"Friday, 19th February 2026",
+   "haldiEventTime":"11:00 AM Onwards",
+   "lagunEventTime":"11:00 AM Onwards",
+   "mehandiEventTime":"11:00 AM Onwards",
+   "phereEventTime":"11:00 AM Onwards",
+   "sangeetEventTime":"11:00 AM Onwards",
+   "vidaiEventTime":"11:00 AM Onwards",
+   "eventVenue":"Hotel Ram Raja Palace, Shivpuri",
+   "haldiEventDressCode":"Shades of Yellow & Gold",
+   "lagunEventDressCode":"Traditional",
+   "mehandiEventDressCode":"Shades of green & Dark green",
+   "phereEventDressCode":"Traditional",
+   "sangeetEventDressCode":"Traditional",
+   "vidaiEventDressCode":"Traditional",
+   "eventLocation":"How to Get There",
+
+
+   "haldiEventTitle":"The Haldi Ceremony",
+   "lagunEventTitle":"The BARAT",
+   "mehandiEventTitle":"The Mehandi Ceremony",
+   "phereEventTitle":"Phere",
+   "sangeetEventTitle":"The Sangeet Ceremony",
+   "vidaiEventTitle":"Vidai",
+   
+
+   "storyHaldiTitle":"A Ceremony of Blessings",
+   "storyLagunTitle":"A Majestic Welcome",
+   "storyMehandiTitle":"A Night of Henna & Happiness",
+   "storyPhereTitle":"Seven Steps to Forever",
+   "storySangeetTitle":"Lets Nacho: The Sangeet Fiesta",
+   "storyVidaiTitle":"With Blessings into a New Life",
+
+
+
+   "storyHaldiDescription":"The Haldi ceremony is a cherished pre-wedding ritual where a paste of turmeric, oil, and water is applied to the bride and groom. This tradition symbolizes purification, blesses the couple with prosperity, and wards off evil spirits, marking an auspicious beginning to their new life together.",
+   "storyLagunDescription":"Bring the noise and bring the joy! Get ready to dance your heart out and join the grooms spectacular procession. Be there to make the celebration unforgettable. Do not miss it!",
+   "storyMehandiDescription":"Get ready for a night where the music will be loud, the colors will be bright, and the memories will last a lifetime. We cannot wait to celebrate with you, with hands full of henna and hearts full of joy. You bring the smiles, we will bring the dhol! Do not forget to come!",
+   "storyPhereDescription":"The story of the Phere is a beautiful journey of commitment. After the initial ceremonies, the brides and grooms garments are tied together in a knot, a ritual called the Gathbandhan. This knot symbolizes their eternal bond and their union as one soul in two bodies.Together, they circle a small, sacred fire, known as Agni. The fire is not just an element; it is considered a deity, a divine witness to the vows being made. The couple offers puffed rice and ghee to the fire, seeking blessings from the gods for a long and prosperous life together.The most crucial part is the Saptapadi, where the couple takes seven steps together, each step representing a specific vow and a pillar of their future marriage. With each step, they build the foundation for their shared life. Once the seventh step is taken, the marriage is considered complete, sacred, and irrevocable.",
+   "storySangeetDescription":"Wondering what the Sangeet night has in store? Heres a little preview: Thumping dhol beats, non-stop dancing, delicious food, and special performances by our beloved family! All you need to do is show up, we will bring the party! 🎉",
+   "storyVidaiDescription":"The Vidai is the formal farewell ceremony where the bride leaves her parental home to begin her new life with her husband. It is a deeply touching and poignant moment, filled with a mix of emotions—the sadness of saying goodbye to her childhood home and the happiness of starting a new chapter.The story of the Vidai is not one of separation, but of transition. It marks the moment a daughter, who has been lovingly raised, steps into her new role as a wife, ready to build her own family. The tears shed during the Vidai are not just of sorrow, but are tears of immense love, gratitude, and heartfelt blessings for the future."
+
+
+
 }

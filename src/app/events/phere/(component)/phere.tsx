@@ -4,19 +4,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CalendarIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>;
 const MapPinIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 const ShirtIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>;
 
-// --- MOCK DATA (Replace with your actual data) ---
-const haldiData = {
+
+const PherePage = () => {
+  const {t} = useLanguage();
+  const haldiData = {
   heroImage: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
-  date: "Friday, 19th February 2026",
-  time: "11:00 AM Onwards",
-  venue: "Hotel Ram Raja Palace, Shivpuri",
+  date: (t("eventDate")),
+  time: (t("phereEventTime")),
+  venue:(t("eventVenue")),
   venueLink: "https://www.google.com/maps/place/CM6C%2B5GP+Ram+raja+vivah+ghar+shivpuri,+Shivpuri+-+Jhansi+Rd,+Airport,+Shivpuri,+Madhya+Pradesh+473638/data=!4m2!3m1!1s0x3970bb356e46d7fd:0xad1dfaf7a000c6f5?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCenQoqkAEsOTQyNjc3MjcsOTQyODQ0ODcsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklO&skid=6cb41489-de18-441d-b772-1ddddca8cf9c",
-  dressCode: "Shades of Yellow & Gold",
+  dressCode: (t("phereEventDressCode")),
   gallery: [
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
@@ -26,8 +29,6 @@ const haldiData = {
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
   ],
 };
-
-const PherePage = () => {
   const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
@@ -45,7 +46,7 @@ const PherePage = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">Phere</h1>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">{t("phereEventTitle")}</h1>
           <p className="mt-4 text-lg md:text-xl font-light">{haldiData.date}</p>
         </motion.div>
       </section>
@@ -87,11 +88,9 @@ const PherePage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">Seven Steps to Forever</h2>
+          <h2 className="text-3xl font-serif text-amber-800">{t("storyPhereTitle")}</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-           The story of the Phere is a beautiful journey of commitment. After the initial ceremonies, the brides and grooms garments are tied together in a knot, a ritual called the Gathbandhan. This knot symbolizes their eternal bond and their union as one soul in two bodies.
-Together, they circle a small, sacred fire, known as Agni. The fire is not just an element; it is considered a deity, a divine witness to the vows being made. The couple offers puffed rice and ghee to the fire, seeking blessings from the gods for a long and prosperous life together.
-The most crucial part is the Saptapadi, where the couple takes seven steps together, each step representing a specific vow and a pillar of their future marriage. With each step, they build the foundation for their shared life. Once the seventh step is taken, the marriage is considered complete, sacred, and irrevocable.
+          {t("storyPhereDescription")}
           </p>
         </motion.div>
 
@@ -122,7 +121,7 @@ The most crucial part is the Saptapadi, where the couple takes seven steps toget
   className="mt-20"
 >
   <h2 className="text-3xl font-serif text-amber-800 text-center mb-8">
-    How to Get There
+      {t("eventLocation")}
   </h2>
   <div className="w-full h-[400px] rounded-2xl shadow-lg overflow-hidden">
     <iframe

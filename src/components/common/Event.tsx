@@ -2,6 +2,7 @@
 import React from 'react'
 import { CardStack } from '@/components/ui/card-stack';
 import { cn } from "@/lib/utils";
+import { useLanguage } from '@/context/LanguageContext';
 export const Highlight = ({
   children,
   className,
@@ -23,11 +24,12 @@ export const Highlight = ({
  
 
 const Events = () => {
+  const {t} = useLanguage();
 const CARDS = [
   {
     id: 0,
-    name: "Amit Love Nisha",
-    designation: "The Proposal 💍",
+    name: (t("eventName1")),
+    designation: (t("eventDesign1")),
     content: (
       <img
         src="https://res.cloudinary.com/ddhgvmdg9/image/upload/v1753621241/beautiful-couple-street-with-presents_zuf6oj.jpg"
@@ -38,8 +40,8 @@ const CARDS = [
   },
   {
     id: 1,
-    name: "Sangeet Night",
-    designation: "A Symphony of Joy 💃",
+    name: (t("eventName2")),
+    designation: (t("eventDesign2")),
     content: (
       <img
         src="https://res.cloudinary.com/ddhgvmdg9/image/upload/v1753621053/young-couple-love-outdoor_oceqzu.jpg"
@@ -50,8 +52,8 @@ const CARDS = [
   },
   {
     id: 2,
-    name: "The Wedding Vows",
-    designation: "A Promise of Forever 🙏",
+    name: (t("eventName3")),
+    designation: (t("eventDesign3")),
     content: (
       <img
         src="https://res.cloudinary.com/ddhgvmdg9/image/upload/v1753621379/Gemini_Generated_Image_8q21bn8q21bn8q21_sncfzu.png"
@@ -62,8 +64,8 @@ const CARDS = [
   },
   {
     id: 3,
-    name: "Grand Reception",
-    designation: "Our First Celebration as Mr. & Mrs. 🎉",
+    name: (t("eventName4")),
+    designation: (t("eventDesign4")),
     content: (
       <img
         src="https://res.cloudinary.com/ddhgvmdg9/image/upload/v1753621506/Gemini_Generated_Image_i62sv1i62sv1i62s_oys6yz.png"

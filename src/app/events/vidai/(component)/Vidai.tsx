@@ -4,19 +4,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CalendarIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>;
 const MapPinIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>;
 const ShirtIcon = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>;
 
-// --- MOCK DATA (Replace with your actual data) ---
-const haldiData = {
+
+
+const VidaiPage = () => {
+  const {t} = useLanguage();
+  const haldiData = {
   heroImage: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
-  date: "Friday, 19th February 2026",
-  time: "11:00 AM Onwards",
-  venue: "Hotel Ram Raja Palace, Shivpuri",
+  date: (t("eventDate")),
+  time: (t("vidaiEventTime")),
+  venue:(t("eventVenue")),
   venueLink: "https://www.google.com/maps/place/CM6C%2B5GP+Ram+raja+vivah+ghar+shivpuri,+Shivpuri+-+Jhansi+Rd,+Airport,+Shivpuri,+Madhya+Pradesh+473638/data=!4m2!3m1!1s0x3970bb356e46d7fd:0xad1dfaf7a000c6f5?utm_source=mstt_1&entry=gps&coh=192189&g_ep=CAESBzI1LjMxLjIYACCenQoqkAEsOTQyNjc3MjcsOTQyODQ0ODcsOTQyMjMyOTksOTQyMTY0MTMsOTQyODA1NzYsOTQyMTI0OTYsOTQyMDczOTQsOTQyMDc1MDYsOTQyMDg1MDYsOTQyMTc1MjMsOTQyMTg2NTMsOTQyMjk4MzksOTQyNzUxNjgsNDcwODQzOTMsOTQyMTMyMDAsOTQyNTgzMjVCAklO&skid=6cb41489-de18-441d-b772-1ddddca8cf9c",
-  dressCode: "Shades of Yellow & Gold",
+  dressCode: (t("vidaiEventDressCode")),
   gallery: [
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
@@ -26,15 +30,13 @@ const haldiData = {
     "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
   ],
 };
-
-const VidaiPage = () => {
   const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 };
 
   return (
-    <div className="bg-[#FFF8E1]"> {/* A light creamy yellow background */}
+    <div className="bg-[#FFF8E1]"> 
       
       <section className="relative h-[60vh] md:h-[70vh] w-full flex items-center justify-center text-center text-white">
         <Image src={haldiData.heroImage} alt="Haldi Ceremony" layout="fill" objectFit="cover" className="brightness-75" />
@@ -44,7 +46,7 @@ const VidaiPage = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">Vidai</h1>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">{t("vidaiEventTitle")}</h1>
           <p className="mt-4 text-lg md:text-xl font-light">{haldiData.date}</p>
         </motion.div>
       </section>
@@ -84,10 +86,9 @@ const VidaiPage = () => {
             viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-20"
         >
-          <h2 className="text-3xl font-serif text-amber-800">With Blessings into a New Life</h2>
+          <h2 className="text-3xl font-serif text-amber-800">{t("storyVidaiTitle")}</h2>
           <p className="max-w-3xl mx-auto mt-4 text-gray-600">
-          The Vidai is the formal farewell ceremony where the bride leaves her parental home to begin her new life with her husband. It is a deeply touching and poignant moment, filled with a mix of emotions—the sadness of saying goodbye to her childhood home and the happiness of starting a new chapter.
-            The story of the Vidai is not one of separation, but of transition. It marks the moment a daughter, who has been lovingly raised, steps into her new role as a wife, ready to build her own family. The tears shed during the Vidai are not just of sorrow, but are tears of immense love, gratitude, and heartfelt blessings for the future.
+          {t("storyVidaiDescription")}
           </p>
         </motion.div>
 
@@ -117,7 +118,7 @@ const VidaiPage = () => {
   className="mt-20"
 >
   <h2 className="text-3xl font-serif text-amber-800 text-center mb-8">
-    How to Get There
+    {t("eventLocation")}
   </h2>
   <div className="w-full h-[400px] rounded-2xl shadow-lg overflow-hidden">
     <iframe

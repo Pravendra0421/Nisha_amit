@@ -3,57 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
-const eventsData = [
-  {
-    id:1,
-    title: "Haldi 💛",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
-    animationDirection: "left",
-    date:"19 feb",
-    url:"/events/haldi"
-  },
-  {
-    id:2,
-    title: "Mehendi 🌿",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549080/Gemini_Generated_Image_4haed74haed74hae_cdvhxh.png",
-    animationDirection: "bottom",
-    date:"19 feb",
-    url:"/events/mehandi"
-  },
-  {
-    id:3,
-    title: "Sangeet 💃",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549542/Gemini_Generated_Image_nr9eucnr9eucnr9e_obee2t.png",
-    animationDirection: "left",
-    date:"20 feb",
-    url:"/events/sangeet"
-  },
-  {
-    id:4,
-    title: "Baraat 🐎",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
-    animationDirection: "right",
-    date:"21 feb",
-    url:"/events/lagun"
-  },
-  {
-    id:5,
-    title: "Phere 🔥",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
-    animationDirection: "bottom",
-    date:"21 feb",
-    url:"/events/phere"
-  },
-  {
-    id:6,
-    title: "Vidai 😢",
-    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
-    animationDirection: "right",
-    date:"22 feb",
-    url:"/events/vidai"
-  },
-];
 
 const cardVariants = {
   hidden: (direction: string) => ({
@@ -69,6 +20,57 @@ const cardVariants = {
 };
 
 const WeddingEvents = () => {
+  const {t} = useLanguage();
+const eventsData = [
+  {
+    id:1,
+    title:(t("eventTitle1")),
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549835/Gemini_Generated_Image_d37ezjd37ezjd37e_a5zyiq.png",
+    animationDirection: "left",
+    date:"19 feb",
+    url:"/events/haldi"
+  },
+  {
+    id:2,
+    title:(t("eventTitle2")),
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549080/Gemini_Generated_Image_4haed74haed74hae_cdvhxh.png",
+    animationDirection: "bottom",
+    date:"19 feb",
+    url:"/events/mehandi"
+  },
+  {
+    id:3,
+    title:(t("eventTitle3")),
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549542/Gemini_Generated_Image_nr9eucnr9eucnr9e_obee2t.png",
+    animationDirection: "left",
+    date:"20 feb",
+    url:"/events/sangeet"
+  },
+  {
+    id:4,
+    title:(t("eventTitle4")),
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754569753/Gemini_Generated_Image_z2zxjgz2zxjgz2zx_qoaqkp.png",
+    animationDirection: "right",
+    date:"21 feb",
+    url:"/events/lagun"
+  },
+  {
+    id:5,
+    title:(t("eventTitle5")),
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549632/Gemini_Generated_Image_m1kzxxm1kzxxm1kz_kio8er.png",
+    animationDirection: "bottom",
+    date:"21 feb",
+    url:"/events/phere"
+  },
+  {
+    id:6,
+    title:(t("eventTitle6")),
+    imageUrl: "https://res.cloudinary.com/ddguf7pkw/image/upload/v1754549722/Gemini_Generated_Image_g3qv2vg3qv2vg3qv_xdeutl.png",
+    animationDirection: "right",
+    date:"22 feb",
+    url:"/events/vidai"
+  },
+];
   return (
     // The fix is applied here
     <div className='p-2 overflow-x-hidden'> 
