@@ -39,6 +39,12 @@ export function NavbarDemo() {
   const publicPages = [
     '/', 
     '/events', 
+    '/events/phere', 
+    '/events/sangeet', 
+    '/events/vidai', 
+    '/events/lagun', 
+    '/events/mehandi', 
+    '/events/haldi', 
     '/ourStory', 
     '/gallery', 
     '/login', 
