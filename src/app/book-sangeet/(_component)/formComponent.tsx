@@ -9,6 +9,7 @@ import axios from 'axios';
 import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
 import { BookSangeetEntity } from '@/core/entities/BookSangeetEntity';
 import { useLanguage } from '@/context/LanguageContext';
+import { ScrollArea } from '@/components/ui/scroll-area';
 type BookSangeetProps = {
     onSuccess: (newData: BookSangeetEntity) => void;
 };
@@ -100,7 +101,8 @@ type BookSangeetProps = {
     }
 
   return (
-    <div className=' max-w-2xl mx-auto text-center mt-30 bg-white p-5 shadow-2xl shadow-gray-400'>
+    <ScrollArea className='h-[80vh]'>
+        <div className=' max-w-2xl mx-auto text-center mt-30 bg-white p-5 shadow-2xl shadow-gray-400'>
         <form  onSubmit={submitHandler}>
             <label htmlFor='fullName'
             className='block text-left text-lg font-medium text-gray-800'
@@ -172,5 +174,6 @@ type BookSangeetProps = {
         </form>
 
     </div>
+    </ScrollArea>
   )
 }

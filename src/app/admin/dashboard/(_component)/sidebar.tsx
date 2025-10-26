@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 import { MdOutlineSpaceDashboard, MdOutlineGroup } from "react-icons/md";
-
+import { CiSettings } from "react-icons/ci";
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
 
@@ -18,6 +18,11 @@ const Sidebar = () => {
       href: "/admin/sangeet",
       comp: <MdOutlineGroup />,
     },
+    {
+      title:"Settings",
+      href:"/admin/settings",
+      comp:<CiSettings/>
+    }
   ];
 
   return (

@@ -26,13 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <LanguageProvider>
-          <ConditionalNavbar/>
-          {children}
-        </LanguageProvider>
-      </body>
+  className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full overflow-x-hidden bg-white`}
+>
+  <LanguageProvider>
+    <ConditionalNavbar />
+    {children}
+  </LanguageProvider>
+</body>
+
     </html>
   );
 }

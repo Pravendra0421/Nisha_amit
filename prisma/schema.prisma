@@ -29,3 +29,7 @@ model BookSangeet{
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
 }
+model BaratLocation{
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  baratLocation String
+}

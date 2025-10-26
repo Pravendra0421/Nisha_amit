@@ -59,7 +59,7 @@
 
 
 
-   "_commentLogin": "now start the get sangeet  ",
+   "_commentLogin": "now start the login form ",
    "submitSuccess":"loginSuccessfully",
    "errorcredential":"Invalid email or password. Please try again.",
    "errorEmail":"Please enter a valid email address.",
@@ -73,5 +73,21 @@
    "buttonLogin":"Signing In...",
    "buttonLogin2":"Sign In",
    "forgotPassword":"Forgot Password",
-   "SignupLogin":"Sign up"
+   "SignupLogin":"Sign up",
+
+
+
+   "_commentSignup":"now start the signup form ",
+   "submitSignup":"signUp successfull",
+   "signupFailed":"Signup failed",
+   "welcomeSignup":"Welcome to Jain Family",
+   "nameSignUp":"Name",
+   "placeh1":"enter your fullName",
+   "placeh2":"enter your phone number",
+   "emailSignup":"Email",
+   "phoneSignup":"Phone",
+   "passwordSignup":"Password",
+   "buttonSignup":"Signing up...",
+   "buttonSignup2":"Signup",
+   "movetoLogin":"move to  Login"
 }

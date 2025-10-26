@@ -6,7 +6,7 @@ export function TimelineDemo() {
     {
       title: "2024:First Hello",
       content: (
-        <div>
+        <div key={1}>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Kismat had its own plans! A chance meeting through a mutual friend
             sparked something special. Who knew a simple hello in Indore would lead
@@ -48,7 +48,7 @@ export function TimelineDemo() {
     {
       title: "December 2024: The Proposal",
       content: (
-        <div>
+        <div key={2}>
           <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Under a beautiful sky, he asked the most important question of his
             life, and with a heart full of joy
@@ -93,7 +93,7 @@ export function TimelineDemo() {
     {
       title: "Changelog",
       content: (
-        <div>
+        <div key={3}>
           <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
             Deployed 5 new components on Aceternity today
           </p>

@@ -11,7 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { auth } from "@/lib/firebase";
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname } from "next/navigation";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { onAuthStateChanged,signOut,User } from "firebase/auth";
@@ -36,16 +36,41 @@ export function NavbarDemo() {
       link:"/gallery"
     }
   ];
+  const publicPages = [
+    '/', 
+    '/events', 
+    '/ourStory', 
+    '/gallery', 
+    '/login', 
+    '/signup', 
+    '/forgot-password'
+  ];
+  const authPages = ['/login', '/signup', '/forgot-password'];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentUser,setCurrentUser] = useState<User |null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null | undefined>(undefined);
+  const router = useRouter();
+  const pathname = usePathname();
   useEffect(()=>{
     const unsubscribe = onAuthStateChanged(auth,(user)=>{
       setCurrentUser(user);
     });
     return ()=>unsubscribe();
   },[]);
-  const router = useRouter();
+  useEffect(()=>{
+    if(currentUser === undefined){
+      return
+    }
+    if(currentUser == null){
+      if (!publicPages.includes(pathname)) {
+        router.push('/login');
+      }
+    }else{
+      if(authPages.includes(pathname)){
+        router.push('/book-sangeet');
+      }
+    }
+  },[currentUser,pathname,router,publicPages,authPages]);
   const handleLoginClick = () => {
     // Close the mobile menu (good for UX)
     setIsMobileMenuOpen(false); 
@@ -57,7 +82,6 @@ const handleLogout=async()=>{
   setIsMobileMenuOpen(false);
   try {
     await signOut(auth);
-    router.push('/login');
   } catch (error) {
     console.error("Logout Error:", error);
     alert("Failed to log out. Please try again.");
@@ -73,6 +97,9 @@ const handleLogout=async()=>{
       router.push('/login');
     }
 };
+if (currentUser === undefined) {
+    return <div>Loading...</div>
+  }
   return (
     <div className="fixed top-0 left-0 w-full z-50  shadow-sm">
       <Navbar>

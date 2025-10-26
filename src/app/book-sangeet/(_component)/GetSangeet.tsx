@@ -55,7 +55,7 @@ const handleUpdate =(id)=>{
         onEnded={() => setPlayingsongUrl(null)} 
     />
             {fetchdata.map(item=>(
-                <>
+                
             <div key={item.id} className='text-3xl mt-4'><ColourfulText text='WELCOME'/> {item.name}
                 <div>
                     <div className="relative w-[300px] h-[300px] flex max-w-2xl mt-20 bg-gray-300 p-5 shadow-2xl shadow-gray-700">
@@ -115,7 +115,6 @@ const handleUpdate =(id)=>{
                 <button className='p-1 mt-4 px-8 rounded-full bg-black text-white' onClick={()=>handleUpdate(item.id)}>Edit</button>
 
             </div>
-                </>
             ))}
         </div>
 

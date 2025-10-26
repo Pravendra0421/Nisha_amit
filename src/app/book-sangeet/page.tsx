@@ -24,7 +24,7 @@ const Page = () => {
             setIsLoading(false);
         });
         return () => unsubscribe();
-    }, [data]);
+    }, []);
     const handleFormSuccess =(newData:BookSangeetEntity)=>{
         setData(currentData=>[...(currentData || []),newData])
     }

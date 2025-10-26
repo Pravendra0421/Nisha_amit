@@ -1,7 +1,8 @@
+import Dashboard from "./(_component)/dashboard"
 const page = () => {
   return (
     <div>
-        dashboard
+      <Dashboard/>
     </div>
   )
 }
