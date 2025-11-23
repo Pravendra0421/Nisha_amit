@@ -3,24 +3,25 @@ import Link from "next/link";
 import { useState } from "react";
 import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 import { MdOutlineSpaceDashboard, MdOutlineGroup } from "react-icons/md";
+import { usePathname } from "next/navigation";
 import { CiSettings } from "react-icons/ci";
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
-
+  const pathname = usePathname();
   const Menus = [
     {
       title: "DashBoard",
-      href: "/admin/dashboard",
+      href: "/adminPanel/dashboard",
       comp: <MdOutlineSpaceDashboard />,
     },
     {
       title: "Sangeet",
-      href: "/admin/sangeet",
+      href: "/adminPanel/sangeet",
       comp: <MdOutlineGroup />,
     },
     {
       title:"Settings",
-      href:"/admin/settings",
+      href:"/adminPanel/settings",
       comp:<CiSettings/>
     }
   ];
@@ -46,8 +47,10 @@ const Sidebar = () => {
           </h1>
         </div>
         <ul className="pt-6">
-          {Menus.map((Menu, index) => (
-            <Link href={Menu.href} key={index}>
+          {Menus.map((Menu, index) => {
+            const isActive = pathname === Menu.href;
+            return(
+              <Link href={Menu.href} key={index}>
               <li
                 className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
                   ${index === 0 ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}`}
@@ -60,7 +63,8 @@ const Sidebar = () => {
                 </span>
               </li>
             </Link>
-          ))}
+            )
+})}
         </ul>
       </div>
     </div>
