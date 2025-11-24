@@ -41,7 +41,10 @@ export function HighQualityGallery({ images, albumName }: GalleryProps) {
 
   const handleDownload = async (url: string) => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url,{
+        method:'GET',
+        mode:'cors'
+      });
       const blob = await response.blob();
       const blobUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
