@@ -49,7 +49,8 @@ export function NavbarDemo() {
     '/gallery', 
     '/login', 
     '/signup', 
-    '/forgot-password'
+    '/forgot-password',
+    '/Photographer'
   ];
   const authPages = ['/login', '/signup', '/forgot-password'];
 

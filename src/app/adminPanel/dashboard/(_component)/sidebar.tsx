@@ -23,7 +23,7 @@ const Sidebar = () => {
       title:"Settings",
       href:"/adminPanel/settings",
       comp:<CiSettings/>
-    }
+    },
   ];
 
   return (
