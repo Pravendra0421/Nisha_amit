@@ -41,7 +41,10 @@ export async function DELETE(req:NextRequest,
     try {
         const {id} = await params;
         const deleteAlbum = await albumusecase.deleteAlbum(id);
-        return NextResponse.json(deleteAlbum)
+        return NextResponse.json(
+            {message:"deleted Successfully"},
+            {status:200}
+        )
     } catch (error) {
         console.error("API POST Error:", error);
         return NextResponse.json(

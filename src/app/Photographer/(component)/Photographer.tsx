@@ -14,10 +14,12 @@ import { Input } from '@/components/ui/input';
 const Photographer = () => {
   const [allAlbum,setAllAlbum] = useState<AlbumEntity[]>([]);
   const [showCreateAlbum,setCreateAlbum] = useState(false);
+  const [showUpdatePhoto,setShowUpdatePhoto]=useState(false);
   const [nameAlbum,setNameAlbum] = useState("");
   const [coverImage,setCoverImage] = useState<File | null>(null);
   const [albumFile,setAlbumFile] = useState<File[]>([]);
   const [isUploading,setUploading] = useState(false);
+  const [selectedAlbum,setSelectedAlbum] = useState<AlbumEntity | null>(null);
   const getAll =async()=>{
       try {
         const response = await albumApi.getAllAlbum();
@@ -38,6 +40,38 @@ const Photographer = () => {
     if(e.target.files){
       const filesArray = Array.from(e.target.files);
       setAlbumFile(filesArray);
+    }
+  }
+  const handleUploadImage =async ()=>{
+    try {
+      if(!albumFile){
+      alert("please select the image");
+      return;
+    }
+    setUploading(true);
+    const uploadPromise = albumFile.map(async (file)=>{
+      const fileRef =ref(storage,`album/${selectedAlbum?.name}/${uuidv4()}_${file.name}`);
+      await uploadBytes(fileRef,file);
+      return getDownloadURL(fileRef);
+    });
+    const albumurls = await Promise.all(uploadPromise);
+    console.log("All Album Images Uploaded:", albumurls);
+    const payload={
+      url:albumurls
+    }
+    if(!selectedAlbum?.id){
+      throw new Error('id is not selected');
+    }
+    await albumApi.updateAlbum(payload,selectedAlbum?.id);
+    alert("Photo upload successfully");
+    setAlbumFile([]);
+    setSelectedAlbum(null);
+    getAll();
+    } catch (error) {
+      console.error("Error uploading photos:", error);
+      alert("Failed to upload photos");
+    }finally{
+      setUploading(false);
     }
   }
   const handleCreateNewAlbum = async()=>{
@@ -80,6 +114,20 @@ const Photographer = () => {
   const ShowCreateAlbum =()=>{
     setCreateAlbum(true);
   }
+  const handleDelete=async(id)=>{
+    const isConfirmed = window.confirm("Are you want to delete the album ");
+    if(!isConfirmed){
+      return;
+    }
+    try {
+      await albumApi.deleteAlbum(id);
+      getAll();
+      alert("Album deleted Successfully");
+    } catch (error) {
+      console.error("Error deleting album:", error);
+      alert("Failed to delete album");
+    }
+  }
   console.log(allAlbum);
   return (
     <div className="flex justify-center p-6 bg-gray-50 min-h-screen mt-25">
@@ -118,13 +166,13 @@ const Photographer = () => {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <button className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-lg shadow-sm transition-all transform active:scale-95 flex items-center justify-center mx-auto gap-2">
+                      <button onClick={()=>{setSelectedAlbum(data),setShowUpdatePhoto(true)}} className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-lg shadow-sm transition-all transform active:scale-95 flex items-center justify-center mx-auto gap-2">
                         <Upload size={16} /> 
                         Upload
                       </button>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <button className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-full transition-colors">
+                      <button onClick={()=>handleDelete(data.id)} className="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-full transition-colors">
                          <Trash2 size={20} />
                       </button>
                     </td>
@@ -145,11 +193,8 @@ const Photographer = () => {
           </Button>
         </div>
         {showCreateAlbum && (
-          // CHANGES: UI Improvement for Modal (Overlay)
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
             <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md relative">
-              
-              {/* Close Button */}
               <button 
                 onClick={() => setCreateAlbum(false)} 
                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
@@ -160,7 +205,6 @@ const Photographer = () => {
               <h3 className="text-2xl font-bold mb-6 text-gray-800">Create New Album</h3>
               
               <div className="space-y-4">
-                {/* Name Input */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Album Name</label>
                   <Input 
@@ -170,8 +214,6 @@ const Photographer = () => {
                     onChange={(e) => setNameAlbum(e.target.value)}
                   />
                 </div>
-
-                {/* Cover Image Input */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image (Single)</label>
                   <Input 
@@ -181,20 +223,16 @@ const Photographer = () => {
                   />
                   {coverImage && <p className="text-xs text-green-600 mt-1">Selected: {coverImage.name}</p>}
                 </div>
-
-                {/* Multiple Images Input */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Album Images (Multiple)</label>
                   <Input 
                     type="file" 
-                    multiple // IMPORTANT: Allows multiple selection
+                    multiple
                     accept="image/*"
                     onChange={handleAlbumImageChange}
                   />
                   {albumFile.length > 0 && <p className="text-xs text-green-600 mt-1">{albumFile.length} files selected</p>}
                 </div>
-
-                {/* Action Buttons */}
                 <div className="pt-4">
                   <Button 
                     onClick={handleCreateNewAlbum} 
@@ -213,6 +251,43 @@ const Photographer = () => {
               </div>
 
             </div>
+          </div>
+        )}
+        {showUpdatePhoto && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
+              <div className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md relative">
+                  <button 
+                  onClick={() => setShowUpdatePhoto(false)} 
+                  className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+                >
+                  <X size={24} />
+                </button>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Upload image</label>
+                  <Input 
+                    type="file" 
+                    multiple
+                    accept="image/*"
+                    onChange={handleAlbumImageChange}
+                  />
+                  {albumFile.length > 0 && <p className="text-xs text-green-600 mt-1">{albumFile.length} files selected</p>}
+                </div>
+                <div className="pt-4">
+                  <Button 
+                    onClick={()=>handleUploadImage()} 
+                    disabled={isUploading} 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                  >
+                    {isUploading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Uploading...
+                      </>
+                    ) : (
+                      "Upload"
+                    )}
+                  </Button>
+                </div>
+              </div>
           </div>
         )}
       </div>
