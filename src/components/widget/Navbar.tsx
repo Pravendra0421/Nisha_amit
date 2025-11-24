@@ -69,7 +69,9 @@ export function NavbarDemo() {
       return
     }
     if(currentUser == null){
-      if (!publicPages.includes(pathname)) {
+      const isPublicPage = publicPages.includes(pathname);
+      const isDynamicPublicPage = pathname.startsWith('/gallery/');
+      if (!isPublicPage && !isDynamicPublicPage) {
         router.push('/login');
       }
     }else{

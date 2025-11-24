@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -14,6 +15,12 @@ const nextConfig = {
         hostname: "res.cloudinary.com",
         port: "",
         pathname: "/**",
+      },
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        port: '',
+        pathname: '/**',
       },
     ],
   },
