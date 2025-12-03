@@ -82,6 +82,10 @@
 
   "submitSignup": "साइनअप सफल हुआ",
   "signupFailed": "साइनअप विफल हुआ",
+  "signupNameFailed": "कृपया नाम दर्ज करें",
+  "signupEmailFailed": "कृपया ईमेल दर्ज करें",
+  "signupPhoneFailed": "कृपया फ़ोन नंबर दर्ज करें",
+  "signupPasswordFailed": "कृपया पासवर्ड दर्ज करें",
   "welcomeSignup": "जैन परिवार में आपका स्वागत है",
   "nameSignUp": "नाम",
   "placeh1": "अपना पूरा नाम दर्ज करें",

@@ -41,6 +41,13 @@ const LoginForm = () => {
   }
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    if(!data.email){
+      setError(t("signupEmailFailed"));
+      return
+    }
+    if(!data.password){
+      setError(t("signupPasswordFailed"))
+    }
     setError("");
     setSuccess("");
     setLoading(true);

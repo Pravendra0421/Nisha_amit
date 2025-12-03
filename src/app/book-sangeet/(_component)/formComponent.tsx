@@ -10,6 +10,7 @@ import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto';
 import { BookSangeetEntity } from '@/core/entities/BookSangeetEntity';
 import { useLanguage } from '@/context/LanguageContext';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import {ToastContainer,toast} from "react-toastify";
 type BookSangeetProps = {
     onSuccess: (newData: BookSangeetEntity) => void;
 };
@@ -72,36 +73,43 @@ type BookSangeetProps = {
             // Set the song URL from Cloudinary's response
             setSong(uploadResponse.data.secure_url);
             console.log("File uploaded successfully:", uploadResponse.data.secure_url);
-            alert(t("submitUploadAlert"));
+            toast.success(t("submitUploadAlert"));
 
         } catch (error) {
             console.error("File upload failed:", error);
-            alert(t("uploadErrorAlert"));
+            toast.error(t("uploadErrorAlert"));
         } finally {
             setIsUploading(false);
         }
     };
     const submitHandler = async (e:React.FormEvent<HTMLFormElement>)=>{
+        if(!detail.name){
+            toast.error(t("signupNameFailed"));
+            return
+        }
+        if(!detail.Side){
+            toast.error("please enter the side");
+        }
         e.preventDefault();
         if (!Song) {
-            alert(t("songuploadAlert"));
+            toast.error(t("songuploadAlert"));
             return;
         }
         const currentUSer = auth.currentUser;
          if (!currentUSer) {
-            alert(t("currentUserAlert"));
+            toast.error(t("currentUserAlert"));
             return;
         }
         const token = await currentUSer.getIdToken();
         const finalData:BookSangeetDto = { ...detail, Song };
         const submitData = await bookSangeetApiRepository.create(finalData,token);
-        alert(t("submitDataAlert"));
+        toast.success(t("submitDataAlert"));
         console.log("data saved successfully",submitData);
         onSuccess(submitData);
     }
 
   return (
-    <ScrollArea className='h-[80vh]'>
+    <ScrollArea className='h-[100vh]'>
         <div className=' max-w-2xl mx-auto text-center mt-30 bg-white p-5 shadow-2xl shadow-gray-400'>
         <form  onSubmit={submitHandler}>
             <label htmlFor='fullName'
@@ -174,6 +182,7 @@ type BookSangeetProps = {
         </form>
 
     </div>
+    <ToastContainer position='top-center' autoClose={3000}/>
     </ScrollArea>
   )
 }

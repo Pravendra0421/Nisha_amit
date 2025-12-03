@@ -13,6 +13,9 @@ const [list,setList] = useState(data);
     }
   };
   const handleDelete = async(id)=>{
+    const answer = window.confirm("Are you sure you want to delete this?");
+    if (!answer) return;
+
    try {
         setLoading(true)
       await bookSangeetApiRepository.delete(id);

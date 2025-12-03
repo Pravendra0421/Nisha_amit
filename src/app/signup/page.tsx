@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { toast } from 'react-toastify';
 import { cn } from "@/lib/utils";
 import { auth } from "@/lib/firebase";
 import { createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
@@ -28,6 +29,24 @@ export default function Page() {
 
     }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    if(!form.name){
+      setError(t("signupNameFailed"));
+      toast.error(t("signupNameFailed"));
+      return
+    }
+    if(!form.email){
+      setError(t("signupEmailFailed"));
+      toast.error(t("signupEmailFailed"));
+    }
+    if(!form.phone){
+      setError(t("signupPhoneFailed"))
+      toast.error(t("signupPhoneFailed"))
+
+    }
+    if(!form.password){
+      setError(t("signupPasswordFailed"))
+      toast.error(t("signupPasswordFailed"))
+    }
     setError("");
     setSuccess("");
     setLoading(true);
@@ -62,7 +81,7 @@ export default function Page() {
     } catch (error) {
         
       console.error("signup failed", error);
-      setError(t("signupFailed"));
+      alert(t("signupFailed"));
     }finally{
         setLoading(false);
     }

@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 import { BookSangeetDto } from '@/core/dtos/BookSangeet.dto'
 import { useLanguage } from '@/context/LanguageContext'
-
 type BookSangeetProps = {
   id: string
 }
@@ -81,6 +80,7 @@ export default function BookSangeet({ id }: BookSangeetProps) {
     const finalData: BookSangeetDto = { ...detail, Song }
     const submitData = await bookSangeetApiRepository.update(finalData, id)
     alert(t('submitDataAlert'))
+    router.push('/book-sangeet');
   }
 
   return (
