@@ -2,6 +2,12 @@ import axios from "axios";
 import { AlbumDtos } from "@/core/dtos/Album.dto";
 import { AlbumEntity } from "@/core/entities/AlbumEntity";
 import { IAlbumRepository } from "@/core/repositories/IAlbumRepository";
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    return '';
+  }
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+};
 export class AlbumApiRepository implements IAlbumRepository{
     async createAlbum(data: AlbumDtos): Promise<AlbumEntity> {
         try {
@@ -18,7 +24,8 @@ export class AlbumApiRepository implements IAlbumRepository{
     }
     async getAllAlbum(): Promise<AlbumEntity[]> {
         try {
-            const result = await axios.get<AlbumEntity[]>('/api/Album');
+            const baseUrl = getBaseUrl();
+            const result = await axios.get<AlbumEntity[]>(`${baseUrl}/api/Album`);
             if(!result){
                 throw new Error("failed the get All Album")
             }
@@ -43,7 +50,8 @@ export class AlbumApiRepository implements IAlbumRepository{
     }
     async getAlbum(albumId: string): Promise<AlbumEntity> {
         try {
-            const result = await axios.get(`/api/Album/${albumId}`);
+            const baseUrl = getBaseUrl();
+            const result = await axios.get(`${baseUrl}/api/Album/${albumId}`);
             return result.data
         } catch (error) {
             console.log(error)

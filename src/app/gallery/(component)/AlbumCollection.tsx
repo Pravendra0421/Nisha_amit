@@ -1,18 +1,15 @@
-'use client'
 import { AlbumEntity } from "@/core/entities/AlbumEntity";
 import { albumApi } from "@/services/Album.api";
-import { useState,useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-const AlbumCollection =()=>{
-    const [AlbumData,setAlbumData] =useState<AlbumEntity[]>([]);
-    const getAll = async()=>{
-        const response = await albumApi.getAllAlbum();
-        setAlbumData(response);
+const AlbumCollection =async()=>{
+    let AlbumData:AlbumEntity[] =[];
+    try {
+        AlbumData= await albumApi.getAllAlbum();
+    } catch (error) {
+        console.error("Failed to fetch albums:", error);
+        return <div className="text-center text-red-500 mt-10">Failed to load albums. Please try again later.</div>;
     }
-    useEffect(()=>{
-        getAll();
-    },[])
     return (
         <section className="p-4 md:p-8 max-w-6xl mx-auto">
         <header className="flex items-center justify-between mb-6">
