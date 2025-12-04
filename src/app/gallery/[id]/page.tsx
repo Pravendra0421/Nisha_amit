@@ -1,5 +1,4 @@
 import React from 'react'
-import AlbumDetailCollection from '../(component)/AlbumDetailCollection'
 import { HighQualityGallery } from '../(component)/HighQualityGallery';
 import { albumApi } from '@/services/Album.api';
 import { AlbumEntity } from '@/core/entities/AlbumEntity';
@@ -17,7 +16,7 @@ const page = async({ params }: { params:Promise<{ id: string }> }) => {
             <div className="min-h-screen flex items-center justify-center bg-white">
                 <div className="text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-2">Album Not Found</h2>
-                    <p className="text-gray-500">This album might have been deleted or doesn't exist.</p>
+                    <p className="text-gray-500">This album might have been deleted or doesnot exist.</p>
                 </div>
             </div>
         );
