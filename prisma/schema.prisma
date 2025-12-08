@@ -10,17 +10,15 @@ datasource db {
 model User {
   id       String             @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  phone    String
-  email        String       @unique
+  phone    String           @unique
   bookSangeet  BookSangeet[]
-  firebaseId  String        @unique
   createdAt DateTime         @default(now())
   updatedAt DateTime        @default(now())
 }
 model BookSangeet{
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   name      String    
-  phone     String
+  phone     String    
   Side      String    //eg... broom side bride side
   Song      String
   video     String?

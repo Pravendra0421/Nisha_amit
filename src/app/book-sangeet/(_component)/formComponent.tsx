@@ -95,14 +95,8 @@ type BookSangeetProps = {
             toast.error(t("songuploadAlert"));
             return;
         }
-        const currentUSer = auth.currentUser;
-         if (!currentUSer) {
-            toast.error(t("currentUserAlert"));
-            return;
-        }
-        const token = await currentUSer.getIdToken();
         const finalData:BookSangeetDto = { ...detail, Song };
-        const submitData = await bookSangeetApiRepository.create(finalData,token);
+        const submitData = await bookSangeetApiRepository.create(finalData);
         toast.success(t("submitDataAlert"));
         console.log("data saved successfully",submitData);
         onSuccess(submitData);

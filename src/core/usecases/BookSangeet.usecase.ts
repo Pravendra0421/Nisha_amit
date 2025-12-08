@@ -7,13 +7,12 @@ export class BookSangeetUsecase {
 
     async createSangeetUseCase(data:BookSangeetDto,userId:string):Promise<BookSangeetEntity>{
         console.log("step1 data",data);
-        const existingUser = await this.userRepository.findbyFirebaseId(userId);
+        const existingUser = await this.userRepository.findByuserId(userId);
         console.log(existingUser);
         if(!existingUser){
             throw new Error("userId doesnot exists");
         }
-        const dbuserId = existingUser.id
-        const createsangeet = await this.booksangeetRepository.create(data,dbuserId);
+        const createsangeet = await this.booksangeetRepository.create(data,userId);
         return createsangeet;
     }
     async updateSangeetUsecase(data:BookSangeetDto,id:string):Promise<BookSangeetEntity>{
@@ -21,12 +20,11 @@ export class BookSangeetUsecase {
         return update;
     }
     async get(userId:string):Promise<BookSangeetEntity[]>{
-        const existingUser = await this.userRepository.findbyFirebaseId(userId);
+        const existingUser = await this.userRepository.findByuserId(userId);
         if(!existingUser){
             throw new Error("userId doesnot exists");
         }
-        const dbuserId = existingUser.id
-        const getByuserId = await this.booksangeetRepository.get(dbuserId);
+        const getByuserId = await this.booksangeetRepository.get(userId);
         return getByuserId;
     }
     async getAll():Promise<BookSangeetEntity[]>{

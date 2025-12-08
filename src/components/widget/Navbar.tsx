@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import {
   Navbar,
   NavBody,
@@ -10,11 +11,12 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { auth } from "@/lib/firebase";
+// import { auth } from "@/lib/firebase";
 import { useRouter,usePathname } from "next/navigation";
+import { User } from "@/core/dtos/User.dto";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { onAuthStateChanged,signOut,User } from "firebase/auth";
+// import { onAuthStateChanged,signOut,User } from "firebase/auth";
 import { useState,useEffect } from "react";
 export function NavbarDemo() {
     const { t } = useLanguage();
@@ -58,12 +60,19 @@ export function NavbarDemo() {
   const [currentUser, setCurrentUser] = useState<User | null | undefined>(undefined);
   const router = useRouter();
   const pathname = usePathname();
-  useEffect(()=>{
-    const unsubscribe = onAuthStateChanged(auth,(user)=>{
-      setCurrentUser(user);
-    });
-    return ()=>unsubscribe();
-  },[]);
+    useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await axios.get("/api/me");
+        setCurrentUser(res.data.user || null);
+      } catch (error) {
+        console.error("Failed to fetch current user:", error);
+        setCurrentUser(null);
+      }
+    };
+
+    checkAuth();
+  }, []);
   useEffect(()=>{
     if(currentUser === undefined){
       return
@@ -90,7 +99,9 @@ export function NavbarDemo() {
 const handleLogout=async()=>{
   setIsMobileMenuOpen(false);
   try {
-    await signOut(auth);
+    await axios.post("/api/logout");
+    setCurrentUser(null);
+    router.push('/login');
   } catch (error) {
     console.error("Logout Error:", error);
     alert("Failed to log out. Please try again.");

@@ -1,16 +1,14 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
-import { auth } from '@/lib/firebase';
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
-
+import { userApi } from '@/services/User.api';
 const LoginForm = () => {
   const loginContainerRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false); // React state to control open/close
+  const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState({
-    email: "",
-    password: ""
+    name: "",
+    phone: ""
   });
   const { t } = useLanguage();
   const [loading, setLoading] = useState(false);
@@ -18,7 +16,6 @@ const LoginForm = () => {
   const [success, setSuccess] = useState("");
   const router = useRouter();
 
-  // Effect to close form when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (loginContainerRef.current && !loginContainerRef.current.contains(event.target as Node)) {
@@ -41,49 +38,27 @@ const LoginForm = () => {
   }
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    if(!data.email){
+    if(!data.name){
       setError(t("signupEmailFailed"));
       return
     }
-    if(!data.password){
-      setError(t("signupPasswordFailed"))
+    if (data.phone.replace(/\D/g, "").length < 10) {
+      setError("Please enter a valid phone number.");
+      return;
     }
     setError("");
     setSuccess("");
     setLoading(true);
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
+      await userApi.create(data);
       setSuccess(t("submitSuccess"));
       router.push('/book-sangeet');
-    } catch (error: unknown) {
-      if (typeof error === "object" && error !== null && "code" in error) {
-        const firebaseError = error as { code: string };
-        switch (firebaseError.code) {
-          case 'auth/invalid-credential':
-            setError(t("errorcredential"));
-            break;
-          case 'auth/invalid-email':
-            setError(t("errorEmail"));
-            break;
-          case 'auth/user-disabled':
-            setError(t("errorUser"));
-            break;
-          case 'auth/too-many-requests':
-            setError(t("errorToomany"));
-            break;
-          default:
-            setError(t("errorDefault"));
-            break;
-        }
-      } else {
-        setError(t("errorDefault"));
+    } catch (err: unknown) {
+      console.error(err);
+        setError("api error");
       }
-    } finally {
+     finally {
       setLoading(false);
     }
   }
@@ -138,14 +113,14 @@ const LoginForm = () => {
           
           <div className="relative">
             <input 
-              type="text" onChange={changeHandler} name='email' value={data.email} placeholder={t("placeHolder1")} required 
+              type="text" onChange={changeHandler} name='name' value={data.name} placeholder={t("placeHolder1")} required 
               className="w-full p-[15px_20px] outline-none border-2 border-white/10 bg-transparent rounded-full text-lg text-[--text-color] transition-colors duration-300 ease-in-out placeholder:text-[--placeholder-color] focus:border-[--glow-cyan]"
             />
           </div>
           
           <div className="relative">
             <input 
-              type="password" onChange={changeHandler} name='password' value={data.password} placeholder={t("placeHolder2")} required 
+              type="text" onChange={changeHandler} name='phone' value={data.phone} placeholder={t("placeHolder2")} required 
               className="w-full p-[15px_20px] outline-none border-2 border-white/10 bg-transparent rounded-full text-lg text-[--text-color] transition-colors duration-300 ease-in-out placeholder:text-[--placeholder-color] focus:border-[--glow-cyan]"
             />
           </div>
@@ -157,10 +132,6 @@ const LoginForm = () => {
             {loading ? t("buttonLogin") : t("buttonLogin2")}
           </button>
           
-          <div className="w-full flex justify-between px-2.5">
-            <a href="/forgot-password" className="text-[--text-color] no-underline text-sm">{t("forgotPassword")}</a>
-            <a href="/signup" className="text-[--glow-pink] font-semibold no-underline text-sm">{t("SignupLogin")}</a>
-          </div>
           
           {error && <p style={{ color: "red" }} className="text-center">{error}</p>}
           {success && <p style={{ color: "green" }} className="text-center">{success}</p>}

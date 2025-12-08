@@ -9,17 +9,22 @@ export async function POST(
     request:NextRequest
 ) {
     try {
-        const token = request.headers.get("authorization")?.split("Bearer ")[1];
-    if (!token) {
-      return NextResponse.json(
-        { message: "Unauthorized - no token" },
-        { status: 401 }
-      );
-    }
     const body = await request.json();
     const data:User = body;
-    const newUSer = await userusecase.createUserUsecase(data,token);
-    return NextResponse.json(newUSer,{status:201});
+    const newUSer = await userusecase.LoginandSignup(data);
+    const res = NextResponse.json({
+      success:true,
+      newUSer
+    })
+    res.cookies.set("token",newUSer.token,{
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60, // 7 days in seconds
+
+    })
+    return res;
     } catch (error) {
     console.error("API POST Error:", error);
     return NextResponse.json(

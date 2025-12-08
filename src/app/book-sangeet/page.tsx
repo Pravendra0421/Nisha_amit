@@ -15,7 +15,7 @@ const Page = () => {
             if (user) {
                 console.log("User is logged in:", user.uid);
                 const token = await user.getIdToken();
-                const response = await bookSangeetApiRepository.get(token); 
+                const response = await bookSangeetApiRepository.get(); 
                 setData(response);
             } else {
                 console.log("User is logged out.");

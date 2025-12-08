@@ -4,14 +4,9 @@ import { BookSangeetEntity } from "@/core/entities/BookSangeetEntity";
 import { IBookSangeetRepository } from "@/core/repositories/IBookSangeet.repository";
 
 export class BookSangeetApiRepository implements IBookSangeetRepository {
-    async create(data: BookSangeetDto, token:string): Promise<BookSangeetEntity> {
+    async create(data: BookSangeetDto): Promise<BookSangeetEntity> {
         const response = await axios.post("/api/book-sangeet",
-            data,
-        {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            }
+            data
         );
         if(!response){
             throw new Error( 'Failed to create book sangeet via API.');
@@ -19,13 +14,8 @@ export class BookSangeetApiRepository implements IBookSangeetRepository {
         return response.data;
     }
 
-    async get(token:string): Promise<BookSangeetEntity[]> {
-        const getByUSerId = await axios.get("/api/book-sangeet",
-            {
-                headers:{
-                    'Authorization':`Bearer ${token}`
-                }
-            }
+    async get(): Promise<BookSangeetEntity[]> {
+        const getByUSerId = await axios.get("/api/book-sangeet"
         );
         if(!getByUSerId){
             throw new Error("failed to get the data from the backend");
