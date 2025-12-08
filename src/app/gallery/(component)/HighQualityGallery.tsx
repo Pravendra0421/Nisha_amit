@@ -9,7 +9,7 @@ const breakpointColumnsObj = {
   default: 4,
   1100: 3,
   700: 2,
-  500: 1
+  500: 4
 };
 
 interface GalleryProps {
@@ -21,7 +21,7 @@ export function HighQualityGallery({ images, albumName }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [visibleImages, setVisibleImages] = useState<string[]>([]);
   const [loadingMore, setLoadingMore] = useState(false);
-  const CHUNK_SIZE = 8; 
+  const CHUNK_SIZE = 16; 
 
   useEffect(() => {
     if(images && images.length > 0) {
