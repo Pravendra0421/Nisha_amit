@@ -9,6 +9,13 @@ export class UserRepositoryApi{
         }
         return response.data;
     }
+    async findUser(){
+        const response = await axios.get('/api/me');
+        if(!response){
+            throw new Error('failed to find user');
+        }
+        return response.data
+    }
 
 }
 export const userApi = new UserRepositoryApi();

@@ -8,9 +8,12 @@ const userRepository = new UserRepository();
 const userusecase = new UserUsecase(userRepository);
 export async function GET(req:NextRequest) {
     try {
-        let userId:string;
+        let userId:string | null;
         try {
             userId=getUserIdFromRequest(req);
+            if (!userId) {
+            return NextResponse.json({ user: null }, { status: 200 });
+            }
         } catch (error) {
             return NextResponse.json({ user: null }, { status: 200 });
         }

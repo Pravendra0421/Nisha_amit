@@ -72,7 +72,7 @@ export function NavbarDemo() {
     };
 
     checkAuth();
-  }, []);
+  }, [pathname]);
   useEffect(()=>{
     if(currentUser === undefined){
       return
@@ -117,9 +117,6 @@ const handleLogout=async()=>{
       router.push('/login');
     }
 };
-if (currentUser === undefined) {
-    return <div>Loading...</div>
-  }
   return (
     <div className="fixed top-0 left-0 w-full z-50  shadow-sm">
       <Navbar>

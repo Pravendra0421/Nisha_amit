@@ -137,9 +137,6 @@ const LoginForm = () => {
           {success && <p style={{ color: "green" }} className="text-center">{success}</p>}
         </form>
       </div>
-
-      {/* --- START of <style jsx> --- */}
-      {/* Yeh CSS sirf isi component par apply hogi */}
       <style jsx>{`
         /* CSS Variables (This part was correct) */
         :global(:root) {
