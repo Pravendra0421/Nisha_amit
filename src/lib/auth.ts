@@ -2,11 +2,11 @@
 import { NextRequest } from "next/server";
 import jwt from "jsonwebtoken";
 
-export function getUserIdFromRequest(req: NextRequest): string | null {
+export function getUserIdFromRequest(req: NextRequest): string {
   try {
     const token = req.cookies.get("token")?.value;
     if (!token) {
-      return null;
+      throw new Error("token not found");
     }
 
     const secret = process.env.JWT_SECRET!;
@@ -15,6 +15,6 @@ export function getUserIdFromRequest(req: NextRequest): string | null {
     return decoded.id;
   } catch (error) {
     console.error("Auth error:", error);
-    return null;
+    throw new Error("error during get user id")
   }
 }
