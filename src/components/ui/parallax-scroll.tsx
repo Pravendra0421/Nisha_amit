@@ -1,12 +1,10 @@
 "use client";
-import { useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { motion } from "framer-motion";
-
+import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useRef, useMemo } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-// Define the type for an image object
-type Image = {
+type ImageType = {
   id: string | number;
   src: string;
   alt?: string;
@@ -16,7 +14,7 @@ export const ParallaxScroll = ({
   images,
   className,
 }: {
-  images: Image[];
+  images: ImageType[];
   className?: string;
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
@@ -29,19 +27,22 @@ export const ParallaxScroll = ({
   const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const translateThird = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
-  const third = Math.ceil(images.length / 3);
+  // 1. OPTIMIZATION: useMemo for Data Splitting
+  // Kyun: Array.slice() har render par naya array banata hai.
+  // useMemo lagane se ye calculation cache ho jati hai.
+  const { firstPart, secondPart, thirdPart } = useMemo(() => {
+    const third = Math.ceil(images.length / 3);
+    return {
+      firstPart: images.slice(0, third),
+      secondPart: images.slice(third, 2 * third),
+      thirdPart: images.slice(2 * third),
+    };
+  }, [images]);
 
-  const firstPart = images.slice(0, third);
-  const secondPart = images.slice(third, 2 * third);
-  const thirdPart = images.slice(2 * third);
-
-  // This download logic remains the same as it's correct
   const handleDownload = async (src: string, id: string | number) => {
     try {
       const response = await fetch(src);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
+      if (!response.ok) throw new Error("Network response was not ok");
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -63,129 +64,93 @@ export const ParallaxScroll = ({
       ref={gridRef}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-5xl mx-auto gap-10 py-40 px-10">
-        {/* We apply the same changes to all three columns */}
         
         {/* Column 1 */}
         <div className="grid gap-10">
           {firstPart.map((el) => (
-            <motion.div
-              style={{ y: translateFirst }}
+            <ImageCard
               key={`grid-1-${el.id}`}
-              className="relative group" // The parent container is relative
-            >
-              <img
-                src={el.src}
-                className="h-80 w-full object-cover object-left-top rounded-lg"
-                height="400"
-                width="400"
-                alt={el.alt || "thumbnail"}
-              />
-              {/* The button is now positioned directly */}
-              <button
-                onClick={() => handleDownload(el.src, el.id)}
-                className="absolute top-4 right-4 bg-white text-black rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                aria-label="Download image"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" x2="12" y1="15" y2="3" />
-                </svg>
-              </button>
-            </motion.div>
+              image={el}
+              translate={translateFirst}
+              onDownload={handleDownload}
+            />
           ))}
         </div>
 
         {/* Column 2 */}
         <div className="grid gap-10">
           {secondPart.map((el) => (
-            <motion.div
-              style={{ y: translateSecond }}
+            <ImageCard
               key={`grid-2-${el.id}`}
-              className="relative group"
-            >
-              <img
-                src={el.src}
-                className="h-80 w-full object-cover object-left-top rounded-lg"
-                height="400"
-                width="400"
-                alt={el.alt || "thumbnail"}
-              />
-              <button
-                onClick={() => handleDownload(el.src, el.id)}
-                className="absolute top-4 right-4 bg-white text-black rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                aria-label="Download image"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" x2="12" y1="15" y2="3" />
-                </svg>
-              </button>
-            </motion.div>
+              image={el}
+              translate={translateSecond}
+              onDownload={handleDownload}
+            />
           ))}
         </div>
 
         {/* Column 3 */}
         <div className="grid gap-10">
           {thirdPart.map((el) => (
-            <motion.div
-              style={{ y: translateThird }}
+            <ImageCard
               key={`grid-3-${el.id}`}
-              className="relative group"
-            >
-              <img
-                src={el.src}
-                className="h-80 w-full object-cover object-left-top rounded-lg"
-                height="400"
-                width="400"
-                alt={el.alt || "thumbnail"}
-              />
-              <button
-                onClick={() => handleDownload(el.src, el.id)}
-                className="absolute top-4 right-4 bg-white text-black rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                aria-label="Download image"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" x2="12" y1="15" y2="3" />
-                </svg>
-              </button>
-            </motion.div>
+              image={el}
+              translate={translateThird}
+              onDownload={handleDownload}
+            />
           ))}
         </div>
       </div>
     </div>
+  );
+};
+
+// 2. Helper Component to Remove Repetition & Apply Optimization
+const ImageCard = ({
+  image,
+  translate,
+  onDownload,
+}: {
+  image: ImageType;
+  translate: MotionValue<number>;
+  onDownload: (src: string, id: string | number) => void;
+}) => {
+  return (
+    <motion.div
+      style={{ y: translate }}
+      className="relative group h-80 w-full rounded-lg overflow-hidden" // Moved sizing classes here
+    >
+      {/* 3. OPTIMIZATION: next/image with fill */}
+      <Image
+        src={image.src}
+        alt={image.alt || "thumbnail"}
+        fill // Automatic width/height based on parent
+        className="object-cover object-left-top"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Responsive sizes
+      />
+      
+      {/* Download Button */}
+      <button
+        onClick={() => onDownload(image.src, image.id)}
+        className="absolute top-4 right-4 bg-white text-black rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 hover:bg-gray-100"
+        aria-label="Download image"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" x2="12" y1="15" y2="3" />
+        </svg>
+      </button>
+    </motion.div>
   );
 };

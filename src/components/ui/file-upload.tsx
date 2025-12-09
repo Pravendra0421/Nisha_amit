@@ -200,7 +200,6 @@ export const FileUpload = ({
 };
 
 export function GridPattern() {
-  // Fewer, smaller cells so it behaves better on mobile
   const columns = 20;
   const rows = 8;
 

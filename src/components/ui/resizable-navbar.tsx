@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { IconMenu2, IconX } from "@tabler/icons-react";
+import Image from "next/image";
 import {
   motion,
   AnimatePresence,
@@ -236,7 +237,7 @@ export const NavbarLogo = () => {
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
-      <img
+      <Image
         src="https://res.cloudinary.com/ddhgvmdg9/image/upload/v1753586134/nisha-love-amit-high-resolution-logo_mdpgqa.png"
         alt="logo"
         width={40}
