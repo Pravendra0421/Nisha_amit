@@ -1,3 +1,4 @@
+import prisma from "@/lib/prisma";
 import Dashboard from "./(_component)/dashboard";
 import { UserRepository } from "@/core/repositories/IUserRepository";
 import { UserUsecase } from "@/core/usecases/User.usecase";
