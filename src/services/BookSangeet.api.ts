@@ -44,6 +44,14 @@ export class BookSangeetApiRepository implements IBookSangeetRepository {
         }
         return getAll.data;
     }
+    async totalSangeet(): Promise<any> {
+        try {
+            const result = await axios.get(``);
+            return result.data;
+        } catch (error) {
+            
+        }
+    }
 }
 
 export const bookSangeetApiRepository = new BookSangeetApiRepository();

@@ -2,12 +2,16 @@ import axios from "axios";
 import { AlbumDtos } from "@/core/dtos/Album.dto";
 import { AlbumEntity } from "@/core/entities/AlbumEntity";
 import { IAlbumRepository } from "@/core/repositories/IAlbumRepository";
+import { number } from "framer-motion";
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
     return '';
   }
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 };
+interface Total {
+    totalPhotos:number
+}
 export class AlbumApiRepository implements IAlbumRepository{
     async createAlbum(data: AlbumDtos): Promise<AlbumEntity> {
         try {
@@ -64,6 +68,14 @@ export class AlbumApiRepository implements IAlbumRepository{
             return result.data
         } catch (error) {
             console.log(error);
+        }
+    }
+    async totalPhoto(): Promise<any> {
+        try {
+            const result = await axios.get(``);
+            return result.data;
+        } catch (error) {
+            
         }
     }
 }

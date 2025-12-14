@@ -33,7 +33,7 @@ export async function POST(
     );
   }
 }
-export async function GET(req:NextRequest,res:NextResponse) {
+export async function GET(req:NextRequest) {
   try {
     const total = await userusecase.TotalUser();
     return NextResponse.json(total,{status:201});
