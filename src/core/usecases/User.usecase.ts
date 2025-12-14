@@ -1,6 +1,5 @@
 import { IUserRepository } from "../repositories/IUserRepository";
 import { User } from "../dtos/User.dto";
-import { admin } from "@/lib/firebaseAdmin";
 import { UserEntity } from "../entities/User.entity";
 import jwt from "jsonwebtoken";
 interface LoginSignupResult {
@@ -8,7 +7,9 @@ interface LoginSignupResult {
   token: string;
   isNewUser: boolean;
 }
-
+interface Total{
+    totalUser:number
+}
 export class UserUsecase{
     constructor(private userRepository:IUserRepository){}
     async LoginandSignup(data:User):Promise<LoginSignupResult>{
@@ -42,5 +43,9 @@ export class UserUsecase{
     async findById(userId:string):Promise<UserEntity | null>{
         const findByUSer = await this.userRepository.findByuserId(userId);
         return findByUSer;
+    }
+    async TotalUser():Promise<Total | null>{
+        const count = await this.userRepository.totalUser();
+        return count;
     }
 }

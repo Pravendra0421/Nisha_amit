@@ -1,12 +1,16 @@
 import { AlbumDtos } from "../dtos/Album.dto";
 import { AlbumEntity } from "../entities/AlbumEntity";
 import prisma from "@/lib/prisma";
+interface Total{
+    totalPhotos:number
+}
 export interface IAlbumRepository{
     createAlbum(data:AlbumDtos):Promise<AlbumEntity>;
     updateAlbum(data:Partial<AlbumDtos>,albumId:string):Promise<AlbumEntity>;
     getAllAlbum():Promise<AlbumEntity[]>;
     getAlbum(albumId:string):Promise<AlbumEntity>;
     deleteAlbum(albumId:string):Promise<void>;
+    totalPhoto():Promise<Total | null>
 }
 export class AlbumRepository implements IAlbumRepository{
     async createAlbum(data: AlbumDtos): Promise<AlbumEntity> {
@@ -46,5 +50,27 @@ export class AlbumRepository implements IAlbumRepository{
         await prisma.album.delete({
             where:{id:albumId}
         })
+    }
+    async totalPhoto(): Promise<Total | null> {
+        const result = await prisma.album.aggregateRaw({
+            pipeline: [
+                {
+                    $project: {
+                        count: { $size: { $ifNull: ["$url", []] } } 
+                    }
+                },
+                {
+                    $group: {
+                        _id: null,
+                        totalPhotos: { $sum: "$count" }
+                    }
+                }
+            ]
+        });
+        const data = result as unknown as any[];
+        const count = data.length > 0 ? data[0].totalPhotos : 0;
+        return{
+            totalPhotos:count
+        }
     }
 }

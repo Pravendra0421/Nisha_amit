@@ -33,3 +33,15 @@ export async function POST(
     );
   }
 }
+export async function GET(req:NextRequest,res:NextResponse) {
+  try {
+    const total = await userusecase.TotalUser();
+    return NextResponse.json(total,{status:201});
+  } catch (error) {
+    console.error("API POST Error:", error);
+    return NextResponse.json(
+      { message: "Failed to get total user." },
+      { status: 500 }
+    );
+  }
+}

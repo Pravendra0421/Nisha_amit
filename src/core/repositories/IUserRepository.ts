@@ -1,10 +1,14 @@
 import { User } from "../dtos/User.dto";
 import { UserEntity } from "../entities/User.entity";
 import prisma from "@/lib/prisma";
+interface Total{
+    totalUser:number
+}
 export interface IUserRepository{
     create(data:User):Promise<UserEntity>;
     findByPhone(phone:string):Promise<UserEntity | null>;
-    findByuserId(userId:string):Promise<UserEntity | null>
+    findByuserId(userId:string):Promise<UserEntity | null>;
+    totalUser():Promise<Total | null>;
 }
 export class UserRepository implements IUserRepository{
     async create(data: User): Promise<UserEntity> {
@@ -27,6 +31,12 @@ export class UserRepository implements IUserRepository{
             where:{id:userId}
         });
         return findById
+    }
+    async totalUser(): Promise<Total | null> {
+        const total = await prisma.user.count();
+        return {
+            totalUser:total
+        }
     }
 
 }

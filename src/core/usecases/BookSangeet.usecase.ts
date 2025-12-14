@@ -2,6 +2,9 @@ import { BookSangeetDto } from "../dtos/BookSangeet.dto";
 import { BookSangeetEntity } from "../entities/BookSangeetEntity";
 import { IBookSangeetRepository } from "../repositories/IBookSangeet.repository";
 import { IUserRepository } from "../repositories/IUserRepository";
+interface Total{
+    totalSangeet:number
+}
 export class BookSangeetUsecase {
     constructor(private booksangeetRepository:IBookSangeetRepository, private userRepository:IUserRepository){}
 
@@ -33,5 +36,9 @@ export class BookSangeetUsecase {
     }
     async deleteBookSangeet(id:string):Promise<void>{
         await this.booksangeetRepository.delete(id);
+    }
+    async totalSangeet():Promise<Total | null>{
+        const count = await this.booksangeetRepository.totalSangeet();
+        return count;
     }
 }

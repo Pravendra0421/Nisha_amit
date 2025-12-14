@@ -2,12 +2,16 @@ import { BookSangeetDto } from "../dtos/BookSangeet.dto";
 import { BookSangeetEntity } from "../entities/BookSangeetEntity";
 import prisma from "@/lib/prisma";
 
+interface Total{
+    totalSangeet:number
+}
 export interface IBookSangeetRepository{
     create(data:BookSangeetDto,userId:string):Promise<BookSangeetEntity>;
     update(data:BookSangeetDto,Id:string):Promise<BookSangeetEntity>;
     get(userId:string):Promise<BookSangeetEntity[]>;
     getAll():Promise<BookSangeetEntity[]>;
     delete(id:string):Promise<void>;
+    totalSangeet():Promise<Total | null>;
 }
 
 export class BookSangeetRepository implements IBookSangeetRepository{
@@ -53,5 +57,11 @@ export class BookSangeetRepository implements IBookSangeetRepository{
         await prisma.bookSangeet.delete({
             where:{id}
         });
+    }
+    async totalSangeet(): Promise<Total | null> {
+        const total = await prisma.bookSangeet.count();
+        return {
+            totalSangeet:total
+        }
     }
 }

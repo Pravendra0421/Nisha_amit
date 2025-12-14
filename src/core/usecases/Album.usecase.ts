@@ -1,6 +1,9 @@
 import { IAlbumRepository } from "../repositories/IAlbumRepository";
 import { AlbumDtos } from "../dtos/Album.dto";
 import { AlbumEntity } from "../entities/AlbumEntity";
+interface Total{
+    totalPhotos:number
+}
 export class AlbumUsecase{
     constructor(private albumRepository:IAlbumRepository){}
 
@@ -23,5 +26,9 @@ export class AlbumUsecase{
     async deleteAlbum(albumId:string):Promise<void>{
         const deleteAlbum = await this.albumRepository.deleteAlbum(albumId);
         return deleteAlbum
+    }
+    async TotalPhoto():Promise<Total| null>{
+        const totalPhoto = await this.albumRepository.totalPhoto();
+        return totalPhoto
     }
 }
